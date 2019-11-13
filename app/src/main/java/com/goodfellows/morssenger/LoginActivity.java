@@ -1,4 +1,4 @@
-package com.goodfellows.morssenger.;
+package com.goodfellows.morssenger;
 
 import androidx.appcompat.app.AppCompatActivity;
 
