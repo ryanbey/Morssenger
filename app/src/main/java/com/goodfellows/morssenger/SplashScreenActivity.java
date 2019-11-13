@@ -2,6 +2,7 @@ package com.goodfellows.morssenger;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 public class SplashScreenActivity extends AppCompatActivity {
@@ -10,5 +11,23 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
+        getSupportActionBar().hide();
+
+        Thread splashThread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    sleep(3000); // How long does the splash screen show?
+                    Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
+                    startActivity(intent);
+                    finish();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        splashThread.start();
     }
 }
