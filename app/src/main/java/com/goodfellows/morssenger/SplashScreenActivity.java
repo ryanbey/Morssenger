@@ -19,7 +19,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             public void run() {
                 try {
                     sleep(3000); // How long does the splash screen show?
-                    Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(intent);
                     finish();
                 } catch (InterruptedException e) {
