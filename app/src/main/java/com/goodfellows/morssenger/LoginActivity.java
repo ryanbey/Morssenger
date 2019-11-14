@@ -12,7 +12,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-        setContentView(R.layout.login_activity);
+        setContentView(R.layout.activity_login);
 
         getSupportActionBar().hide();
     }
