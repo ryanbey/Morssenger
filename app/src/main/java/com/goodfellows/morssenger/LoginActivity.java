@@ -15,13 +15,9 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Fade in from SplashScreen
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-
         setContentView(R.layout.activity_sign_in);
 
-        // Hide Action Bar
         getSupportActionBar().hide();
     }
 
