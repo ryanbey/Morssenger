@@ -8,59 +8,56 @@
     tools:context=".LoginActivity">
 
     <EditText
-        android:id="@+id/et_password"
+        android:id="@+id/et_new_password"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/button_login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_email" />
+        app:layout_constraintStart_toStartOf="@+id/et_new_email"
+        app:layout_constraintTop_toBottomOf="@+id/et_new_email"
+        android:autofillHints="" />
 
     <ImageView
         android:id="@+id/sign_in_logo"
         android:layout_width="133dp"
         android:layout_height="113dp"
-        android:layout_marginTop="220dp"
-        app:layout_constraintBottom_toTopOf="@+id/et_email"
+        app:layout_constraintBottom_toTopOf="@+id/et_new_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/morssenger_logo_green" />
+        app:srcCompat="@drawable/morssenger_logo_green"
+        tools:ignore="ContentDescription" />
 
     <EditText
-        android:id="@+id/et_email"
+        android:id="@+id/et_new_email"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Email"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/et_password"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_in_logo" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/button_login"
         android:layout_width="86dp"
         android:layout_height="43dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="220dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/morssenger_sign_in_button_bg"
         android:onClick="displayConversationActivity"
         android:text="LOGIN"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@android:color/background_light"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/et_password"
-        app:layout_constraintTop_toBottomOf="@+id/et_password" />
+        app:layout_constraintStart_toStartOf="@+id/et_new_password"
+        app:layout_constraintTop_toBottomOf="@+id/et_new_password" />
 
     <Button
         android:id="@+id/button_sign_up"
@@ -71,9 +68,7 @@
         android:onClick="displayCreateAccount"
         android:text="SIGN UP"
         android:textColor="@android:color/tertiary_text_light"
-        app:layout_constraintBottom_toBottomOf="@+id/button_login"
-        app:layout_constraintEnd_toEndOf="@+id/et_password"
-        app:layout_constraintTop_toTopOf="@+id/button_login"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintEnd_toEndOf="@+id/et_new_password"
+        app:layout_constraintTop_toTopOf="@+id/button_login" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
