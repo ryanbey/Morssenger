@@ -18,7 +18,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    sleep(3000); // How long does the splash screen show?
+                    sleep(2500); // How long does the splash screen show?
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(intent);
                     finish();
