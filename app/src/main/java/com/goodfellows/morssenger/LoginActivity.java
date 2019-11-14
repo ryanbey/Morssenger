@@ -6,17 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.goodfellows.morssenger.ConversationsActivity;
-import com.goodfellows.morssenger.R;
-import com.goodfellows.morssenger.SignUpActivity;
-
 public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-        setContentView(R.layout.activity_sign_in);
+        setContentView(R.layout.login_activity);
 
         getSupportActionBar().hide();
     }
