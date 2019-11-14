@@ -28,7 +28,8 @@
         android:hint="Last Name"
         android:inputType="textPersonName"
         app:layout_constraintStart_toEndOf="@+id/et_first_name"
-        app:layout_constraintTop_toTopOf="@+id/et_first_name" />
+        app:layout_constraintTop_toTopOf="@+id/et_first_name"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/et_first_name"
@@ -39,7 +40,8 @@
         android:hint="First Name"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/et_new_email"
-        app:layout_constraintStart_toStartOf="@+id/et_new_email" />
+        app:layout_constraintStart_toStartOf="@+id/et_new_email"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/et_new_email"
@@ -47,12 +49,13 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Email"
-        android:inputType="textPersonName"
+        android:inputType="textPersonName|textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/et_new_password"
@@ -61,7 +64,8 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Password"
-        android:inputType="textPersonName"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="@+id/et_new_email"
         app:layout_constraintTop_toBottomOf="@+id/et_new_email" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,7 +16,8 @@
         android:hint="Password"
         android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="@+id/et_new_email"
-        app:layout_constraintTop_toBottomOf="@+id/et_new_email" />
+        app:layout_constraintTop_toBottomOf="@+id/et_new_email"
+        android:autofillHints="" />
 
     <ImageView
         android:id="@+id/sign_in_logo"
@@ -26,7 +27,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/morssenger_logo_green" />
+        app:srcCompat="@drawable/morssenger_logo_green"
+        tools:ignore="ContentDescription" />
 
     <EditText
         android:id="@+id/et_new_email"
@@ -34,12 +36,13 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Email"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/button_login"
