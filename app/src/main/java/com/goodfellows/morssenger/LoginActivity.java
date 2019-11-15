@@ -31,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         userEmail = (EditText) findViewById(R.id.et_email);
         userPassword = (EditText) findViewById(R.id.et_password);
         loginBtn = (Button) findViewById(R.id.button_login);
+
         getSupportActionBar().hide();
 
         //firebase - Evans
@@ -88,11 +89,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
-   // public void displayConversationActivity(View view) {
-    //    Intent iConversation = new Intent(this, ConversationsActivity.class);
-    //    startActivity(iConversation);
-   // }
 
     public void displayCreateAccount(View view) {
         Intent iCreateAccount = new Intent(this, SignUpActivity.class);
