@@ -51,7 +51,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/morssenger_sign_in_button_bg"
-        android:onClick="displayConversationActivity"
+        android:onClick="displayConversationsActivity"
         android:text="LOGIN"
         android:textAlignment="center"
         android:textAllCaps="false"
@@ -65,10 +65,22 @@
         android:layout_height="43dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/morssenger_sign_up_button_bg"
-        android:onClick="displayCreateAccount"
+        android:onClick="displaySignUp"
         android:text="SIGN UP"
-        android:textColor="@android:color/tertiary_text_light"
+        android:textColor="@color/colorTextGrey"
         app:layout_constraintEnd_toEndOf="@+id/et_password"
         app:layout_constraintTop_toTopOf="@+id/button_login" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="#00FFFFFF"
+        android:onClick="displayConversationsActivity"
+        android:text="skip sign in"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -72,25 +72,31 @@ public class LoginActivity extends AppCompatActivity {
 
                 //authenticate user
                 auth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (!task.isSuccessful())
-                                {
-                                    Toast.makeText(getApplicationContext(), "Wrong email/password!", Toast.LENGTH_SHORT).show();
-                                }
-                                else {
-                                    Intent intent = new Intent(LoginActivity.this, ConversationsActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                }
+                    .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (!task.isSuccessful())
+                            {
+                                Toast.makeText(getApplicationContext(), "Wrong email/password!", Toast.LENGTH_SHORT).show();
                             }
-                        });
+                            else {
+                                Intent intent = new Intent(LoginActivity.this, ConversationsActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }
+                    });
             }
         });
     }
 
-    public void displayCreateAccount(View view) {
+    // Connected to button to bypass sign in to test conversations screen
+    public void displayConversationsActivity(View view) {
+        Intent iConversations = new Intent(this, ConversationsActivity.class);
+        startActivity(iConversations);
+    }
+
+    public void displaySignUp(View view) {
         Intent iCreateAccount = new Intent(this, SignUpActivity.class);
         startActivity(iCreateAccount);
     }

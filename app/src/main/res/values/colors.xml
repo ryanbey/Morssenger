@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3cce62</color>
-    <color name="colorPrimaryDark">#3cce8b</color>
     <color name="colorAccent">#3cce62</color>
+    <color name="colorMorseAqua">#3cce8b</color>
+    <color name="colorMorseGreen">#3cce62</color>
+    <color name="colorTextGrey">#808080</color>
+    <color name="colorWhite">#fafafa</color>
 </resources>

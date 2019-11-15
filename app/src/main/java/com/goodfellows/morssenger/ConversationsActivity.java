@@ -11,6 +11,6 @@ public class ConversationsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conversations);
 
-        Utils.greenStatusBar(this, R.color.colorPrimary); // Green status bar
+        Utils.greenStatusBar(this, R.color.colorMorseGreen); // Green status bar
     }
 }

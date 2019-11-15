@@ -7,13 +7,12 @@ import android.os.Build;
 import androidx.core.content.ContextCompat;
 
 public class Utils {
-    // The public static function which can be called from other classes
+    // Change the status bar from white to green for certain activities
     public static void greenStatusBar(Activity activity, int color) {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             activity.getWindow().setStatusBarColor(
-                darkenColor(
-                      ContextCompat.getColor(activity, color)));
+                      ContextCompat.getColor(activity, color));
         }
     }
 
