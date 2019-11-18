@@ -36,7 +36,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
 
-
     // Recycles the ViewHolders and puts them into the positions they are supposed to be in
     @NonNull
     @Override
@@ -45,7 +44,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
-
 
 
     // This class can change based on what you want the layout to look like
