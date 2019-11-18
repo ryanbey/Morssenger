@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,10 +27,9 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         getSupportActionBar().hide();
-
         //Get Firebase auth instance -Evans
         auth = FirebaseAuth.getInstance();
-
+        updateProgressBar(false);
         //set button/editText to respective IDs -Evans
         buttonSignUp = (Button) findViewById(R.id.button_sign_up3);
         nEmail = (EditText) findViewById(R.id.et_email);
@@ -39,11 +39,10 @@ public class SignUpActivity extends AppCompatActivity {
         nLastName = (EditText) findViewById(R.id.et_last_name);
 
 
-        //
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                updateProgressBar(true);
                 //sets user input to strings
                 final String email = nEmail.getText().toString().trim();
                 final String password = nPassword.getText().toString().trim();
@@ -53,22 +52,26 @@ public class SignUpActivity extends AppCompatActivity {
 
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                    updateProgressBar(false);
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)) {
                     Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                    updateProgressBar(false);
                     return;
                 }
 
                 if (password.length() < 6) {  //makes sure password is grater than 6 characters -Evans
                     Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
+                    updateProgressBar(false);
                     return;
                 }
 
                 if (!password.equals(confirmPassword)) //makes sure password matches -Evans
                 {
                     Toast.makeText(getApplicationContext(), "Password does not match!", Toast.LENGTH_SHORT).show();
+                    updateProgressBar(false);
                     return;
                 }
 
@@ -82,10 +85,10 @@ public class SignUpActivity extends AppCompatActivity {
                                 // the auth state listener will be notified and logic to handle the
                                 // signed in user can be handled in the listener.
                                 if (!task.isSuccessful()) {
+                                    updateProgressBar(false);
                                     Toast.makeText(SignUpActivity.this, "Authentication failed." + task.getException(),
                                             Toast.LENGTH_SHORT).show();
                                 } else {
-
                                     addUserTofirebase(email, password, fname, lname);
                                     startActivity(new Intent(SignUpActivity.this, ConversationsActivity.class));
                                     finish();
@@ -95,6 +98,7 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
     }
+
     //sends new user information to firebase.
     private void addUserTofirebase(String email, String password, String fname, String lname){
 
@@ -106,5 +110,15 @@ public class SignUpActivity extends AppCompatActivity {
         user.setLastName(lname);
 
         auth.createUserWithEmailAndPassword(user.email, user.password);
+    }
+
+    private void updateProgressBar(boolean isOn) {
+        ProgressBar pb = findViewById(R.id.progressBar);
+        if (isOn) {
+            pb.setVisibility(ProgressBar.VISIBLE);
+        }
+       else {
+            pb.setVisibility(ProgressBar.INVISIBLE);
+       }
     }
 }

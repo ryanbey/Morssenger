@@ -10,12 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth auth; //creates fire base Authentication object -Evans
@@ -33,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = (Button) findViewById(R.id.button_login);
 
         getSupportActionBar().hide();
+        updateProgressBar(false);
 
         //firebase - Evans
         //get firebase auth instance
@@ -57,16 +60,19 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                updateProgressBar(true);
                 String email = userEmail.getText().toString();
                 final String password = userPassword.getText().toString();
 
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                    updateProgressBar(false);
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)) {
                     Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                    updateProgressBar(false);
                     return;
                 }
 
@@ -78,6 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (!task.isSuccessful())
                             {
                                 Toast.makeText(getApplicationContext(), "Wrong email/password!", Toast.LENGTH_SHORT).show();
+                                updateProgressBar(false);
                             }
                             else {
                                 Intent intent = new Intent(LoginActivity.this, ConversationsActivity.class);
@@ -88,6 +95,16 @@ public class LoginActivity extends AppCompatActivity {
                     });
             }
         });
+    }
+
+    private void updateProgressBar(boolean isOn) {
+        ProgressBar pb = findViewById(R.id.progressBar3);
+        if (isOn) {
+            pb.setVisibility(ProgressBar.VISIBLE);
+        }
+        else {
+            pb.setVisibility(ProgressBar.INVISIBLE);
+        }
     }
 
     // Connected to button to bypass sign in to test conversations screen
