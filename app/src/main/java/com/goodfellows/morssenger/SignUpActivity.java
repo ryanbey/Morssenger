@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth auth; //creates fire base Authentication object -Evans
     private Button buttonSignUp;
-    private EditText nEmail, nPassword, nFirstName, nLastName;
+    private EditText nEmail, nPassword, nFirstName, nLastName, authPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +34,10 @@ public class SignUpActivity extends AppCompatActivity {
         buttonSignUp = (Button) findViewById(R.id.button_sign_up3);
         nEmail = (EditText) findViewById(R.id.et_email);
         nPassword = (EditText) findViewById(R.id.et_password);
+        authPassword = (EditText) findViewById(R.id.et_password_confirm);
         nFirstName = (EditText) findViewById(R.id.et_first_name);
         nLastName = (EditText) findViewById(R.id.et_last_name);
+
 
         //
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +49,7 @@ public class SignUpActivity extends AppCompatActivity {
                 final String password = nPassword.getText().toString().trim();
                 final String fname = nFirstName.getText().toString().trim();
                 final String lname = nLastName.getText().toString().trim();
+                final String confirmPassword = authPassword.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
@@ -58,8 +61,14 @@ public class SignUpActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (password.length() < 6) {
+                if (password.length() < 6) {  //makes sure password is grater than 6 characters -Evans
                     Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (!password.equals(confirmPassword)) //makes sure password matches -Evans
+                {
+                    Toast.makeText(getApplicationContext(), "Password does not match!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
