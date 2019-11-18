@@ -27,10 +27,12 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         getSupportActionBar().hide();
-        //Get Firebase auth instance -Evans
+
+        // Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
         updateProgressBar(false);
-        //set button/editText to respective IDs -Evans
+
+        // Set button/editText to respective IDs
         buttonSignUp = (Button) findViewById(R.id.button_sign_up3);
         nEmail = (EditText) findViewById(R.id.et_email);
         nPassword = (EditText) findViewById(R.id.et_password);
@@ -43,7 +45,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 updateProgressBar(true);
-                //sets user input to strings
+                // Sets user input to strings
                 final String email = nEmail.getText().toString().trim();
                 final String password = nPassword.getText().toString().trim();
                 final String fname = nFirstName.getText().toString().trim();
@@ -75,31 +77,31 @@ public class SignUpActivity extends AppCompatActivity {
                     return;
                 }
 
-                //create user
+                // Create user
                 auth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                Toast.makeText(SignUpActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
-                                // If sign in fails, display a message to the user. If sign in succeeds
-                                // the auth state listener will be notified and logic to handle the
-                                // signed in user can be handled in the listener.
-                                if (!task.isSuccessful()) {
-                                    updateProgressBar(false);
-                                    Toast.makeText(SignUpActivity.this, "Authentication failed." + task.getException(),
-                                            Toast.LENGTH_SHORT).show();
-                                } else {
-                                    addUserTofirebase(email, password, fname, lname);
-                                    startActivity(new Intent(SignUpActivity.this, ConversationsActivity.class));
-                                    finish();
-                                }
+                    .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            Toast.makeText(SignUpActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+                            // If sign in fails, display a message to the user. If sign in succeeds
+                            // the auth state listener will be notified and logic to handle the
+                            // signed in user can be handled in the listener.
+                            if (!task.isSuccessful()) {
+                                updateProgressBar(false);
+                                Toast.makeText(SignUpActivity.this, "Authentication failed." + task.getException(),
+                                        Toast.LENGTH_SHORT).show();
+                            } else {
+                                addUserTofirebase(email, password, fname, lname);
+                                startActivity(new Intent(SignUpActivity.this, ConversationsActivity.class));
+                                finish();
                             }
-                        });
+                        }
+                    });
             }
         });
     }
 
-    //sends new user information to firebase.
+    // Sends new user information to firebase
     private void addUserTofirebase(String email, String password, String fname, String lname){
 
         User user = new User();

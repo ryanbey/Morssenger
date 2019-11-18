@@ -12,25 +12,25 @@ import androidx.core.app.NotificationCompat;
 
 public class Notification extends AppCompatActivity {
 
-    // id for the channel (SOS)
+    // ID for the channel (SOS)
     private String channelID = "morssenger";
-    // id for the notification
+    // ID for the notification
     private int notificationID = 111000111;
 
-    // send notification, String message
+    // Send notification, String message
     public void sendNotification(String message, String contact){
 
-        // first create a channel for the notification
+        // First create a channel for the notification
         createChannel();
 
-        // create the notification with the builder
+        // Create the notification with the builder
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this,channelID);
         mBuilder.setSmallIcon(R.drawable.ic_message)
                 .setContentTitle("Message from " + contact)
                 .setContentText(message);
 
 
-        // need to have a class to send the view to before implementing this bit
+        // Need to have a class to send the view to before implementing this bit
 //        Intent intent = new Intent(Notification.this, NotificationActivity.class);
 //        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //        intent.putExtra("message", "one message");
@@ -42,7 +42,7 @@ public class Notification extends AppCompatActivity {
 
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        // notificationID allows you to update the notification later on.
+        // NotificationID allows you to update the notification later on.
         mNotificationManager.notify(notificationID, mBuilder.build());
 
     }
@@ -50,6 +50,7 @@ public class Notification extends AppCompatActivity {
     private void createChannel(){
         // Create the NotificationChannel with message for name
         NotificationChannel channel = new NotificationChannel(channelID, "message", NotificationManager.IMPORTANCE_HIGH);
+
         // Register the channel with the system; you can't change the importance
         // or other notification behaviors after this
         NotificationManager notificationManager = getSystemService(NotificationManager.class);

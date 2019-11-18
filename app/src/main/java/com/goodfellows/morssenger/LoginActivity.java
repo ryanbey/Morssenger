@@ -37,62 +37,62 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         updateProgressBar(false);
 
-        //firebase - Evans
-        //get firebase auth instance
+        // Firebase
+        // Get firebase auth instance
         auth = FirebaseAuth.getInstance();
         loginBtn = (Button) findViewById(R.id.button_login);
 
-        //get current user
+        // Get current user
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    // launch conversation activity if user is logged in
-                    Intent existingUser = new Intent(LoginActivity.this, ConversationsActivity.class);
-                    startActivity(existingUser);
-                    finish();
-                }
+            FirebaseUser user = firebaseAuth.getCurrentUser();
+            if (user != null) {
+                // launch conversation activity if user is logged in
+                Intent existingUser = new Intent(LoginActivity.this, ConversationsActivity.class);
+                startActivity(existingUser);
+                finish();
+            }
             }
         };
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateProgressBar(true);
-                String email = userEmail.getText().toString();
-                final String password = userPassword.getText().toString();
+            updateProgressBar(true);
+            String email = userEmail.getText().toString();
+            final String password = userPassword.getText().toString();
 
-                if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
-                    updateProgressBar(false);
-                    return;
-                }
+            if (TextUtils.isEmpty(email)) {
+                Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                updateProgressBar(false);
+                return;
+            }
 
-                if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
-                    updateProgressBar(false);
-                    return;
-                }
+            if (TextUtils.isEmpty(password)) {
+                Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                updateProgressBar(false);
+                return;
+            }
 
-                //authenticate user
-                auth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (!task.isSuccessful())
-                            {
-                                Toast.makeText(getApplicationContext(), "Wrong email/password!", Toast.LENGTH_SHORT).show();
-                                updateProgressBar(false);
-                            }
-                            else {
-                                Intent intent = new Intent(LoginActivity.this, ConversationsActivity.class);
-                                startActivity(intent);
-                                finish();
-                            }
+            // Authenticate user
+            auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (!task.isSuccessful())
+                        {
+                            Toast.makeText(getApplicationContext(), "Wrong email/password!", Toast.LENGTH_SHORT).show();
+                            updateProgressBar(false);
                         }
-                    });
+                        else {
+                            Intent intent = new Intent(LoginActivity.this, ConversationsActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }
+                });
             }
         });
     }
@@ -107,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    // Connected to button to bypass sign in to test conversations screen
+    // Temporary button to bypass sign in to test conversations screen
     public void displayConversationsActivity(View view) {
         Intent iConversations = new Intent(this, ConversationsActivity.class);
         startActivity(iConversations);

@@ -8,14 +8,10 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /*
@@ -40,9 +36,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
 
-    /*
-    Recycles the ViewHolders and puts them into the positions they are supposed to be in
-     */
+
+    // Recycles the ViewHolders and puts them into the positions they are supposed to be in
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -52,10 +47,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
 
-    /*
-    This class can change based on what you want the layout to look like
-    Right now it uses the images and shows a toast when you click on a list item
-     */
+
+    // This class can change based on what you want the layout to look like
+    // Right now it uses the images and shows a toast when you click on a list item
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
@@ -81,9 +75,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
 
-    /*
-    Tells RecyclerViewAdapter how many items are in the list so it knows how many to display
-     */
+    // Tells RecyclerViewAdapter how many items are in the list so it knows how many to display
     @Override
     public int getItemCount() {
         return mImageNames.size();
