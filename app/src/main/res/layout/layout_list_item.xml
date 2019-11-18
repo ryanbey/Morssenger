@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:padding="16dp"
-    android:id="@+id/parent_layout"> <!--This ID allows us to connect the layout to an OnClickListener-->
+    android:padding="8dp"
+    android:id="@+id/parent_layout"> <!--Allows us to connect to an OnClickListener-->
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
         android:src="@mipmap/ic_launcher" />
 
     <androidx.appcompat.widget.AppCompatTextView
