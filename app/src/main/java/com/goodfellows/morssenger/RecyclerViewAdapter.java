@@ -1,6 +1,8 @@
 package com.goodfellows.morssenger;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,14 +64,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         holder.imageName.setText(mImageNames.get(position));
 
-        // Right now this shows a toast, CHANGE LATER TO GO TO MESSAGE FRAGMENT
+        // Starts messages activity
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onClick: clicked on: " + mImageNames.get(position));
-                Toast.makeText(mContext,mImageNames.get(position), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(mContext,mImageNames.get(position), Toast.LENGTH_SHORT).show();
+
+                // Start messages activity
+                Intent intent = new Intent(mContext, MessagesActivity.class);
+                mContext.startActivity(intent);
             }
         });
+
     }
 
 
