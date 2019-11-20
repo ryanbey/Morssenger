@@ -10,8 +10,12 @@ public class MessagesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.slidein, R.anim.slideout);
         setContentView(R.layout.activity_messages);
-        getSupportActionBar().hide();
+
+        // Layout Stuff
+        Utils.greenStatusBar(this, R.color.colorMorseGreen);
+        setTitle("Messages");
 
         Intent intent = getIntent();
     }
