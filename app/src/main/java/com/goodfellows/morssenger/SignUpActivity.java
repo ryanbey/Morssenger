@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth auth; //creates fire base Authentication object -Evans
@@ -111,7 +112,7 @@ public class SignUpActivity extends AppCompatActivity {
         user.setPassword(password);
         user.setFirstName(fname);
         user.setLastName(lname);
-
+        FirebaseDatabase.getInstance().getReference("users").push().setValue(user);
         auth.createUserWithEmailAndPassword(user.email, user.password);
     }
 
