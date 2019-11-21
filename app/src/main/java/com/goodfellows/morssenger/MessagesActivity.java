@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 public class MessagesActivity extends AppCompatActivity {
 
@@ -15,8 +16,14 @@ public class MessagesActivity extends AppCompatActivity {
 
         // Layout Stuff
         Utils.greenStatusBar(this, R.color.colorMorseGreen);
-        setTitle("Messages");
+        setTitle("Contact Name");
 
         Intent intent = getIntent();
+    }
+
+    public void displayMorseInputActivity(View view) {
+
+        Intent iMorseInput = new Intent(this, MorseInputActivity.class);
+        startActivity(iMorseInput);
     }
 }

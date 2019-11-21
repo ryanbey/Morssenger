@@ -32,10 +32,10 @@ public class ConversationsActivity extends AppCompatActivity {
 
         // App doesn't show anything without test images in here currently
         mImageURLs.add("https://i.redd.it/snywd65vzt7y.jpg");
-        mNames.add("Yosemite");
+        mNames.add("Contact Name");
 
         mImageURLs.add("https://i.redd.it/bt2jpx8q9hu31.jpg");
-        mNames.add("City Sunset");
+        mNames.add("Contact Name");
 
         // This can be done in onCreate if we decide not to use images for contacts
         initRecyclerView();

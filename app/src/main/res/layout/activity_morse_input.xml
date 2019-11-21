@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MorseInputActivity">
+
+    <Button
+        android:id="@+id/btn_morse_input_dot"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/button_morse_input_circle"
+        android:onClick="displayMessage"
+        android:text="•"
+        android:textColor="#FFFFFF"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias=".5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_next_char"
+
+        android:layout_width="130dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+
+        android:background="@drawable/button_morse_input_bar"
+        android:onClick="displaySpace"
+        android:text="Next Character"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/btn_morse_input_dot"
+        app:layout_constraintTop_toTopOf="@+id/btn_morse_input_dot" />
+
+
+    <Button
+        android:id="@+id/btn_next_word"
+
+        android:layout_width="130dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+
+        android:background="@drawable/button_morse_input_bar"
+        android:onClick="displaySlash"
+        android:text="Next Word"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_morse_input_dot"
+        app:layout_constraintStart_toEndOf="@+id/btn_morse_input_dot" />
+
+    <Button
+        android:id="@+id/btn_backspace"
+
+        android:layout_width="130dp"
+        android:layout_height="46dp"
+
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/button_morse_input_bar"
+        android:onClick="backspace"
+        android:text="Backspace"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_morse_input_dot"
+        app:layout_constraintTop_toTopOf="@+id/btn_morse_input_dot" />
+
+    <Button
+        android:id="@+id/btn_clear"
+
+        android:layout_width="130dp"
+        android:layout_height="46dp"
+
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/button_morse_input_bar"
+        android:onClick="clearMessage"
+        android:text="Clear"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_morse_input_dot"
+        app:layout_constraintEnd_toStartOf="@+id/btn_morse_input_dot" />
+
+    <Button
+        android:id="@+id/btn_confirm"
+
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/button_send"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_morse_input_dot"
+        app:layout_constraintEnd_toEndOf="@+id/btn_next_char" />
+
+    <TextView
+        android:id="@+id/tv_morse_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:padding="10dp"
+        android:text=" "
+        android:textSize="48dp"
+        android:textColor="@color/colorMorseGreen"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/tv_translated_mesasge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Translated Message"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_backspace"
+        app:layout_constraintStart_toStartOf="@+id/btn_backspace" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
