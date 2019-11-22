@@ -2,6 +2,7 @@ package com.goodfellows.morssenger;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,22 +24,28 @@ public class MorseInputActivity extends AppCompatActivity {
     */
     public void displayMessage(View view) {
         final TextView tv = findViewById(R.id.tv_morse_input);
-
+//
+        MediaPlayer beepSoundMP = null;
+//
         // Long Press
         Button button = findViewById(R.id.btn_morse_input_dot);
         button.setOnLongClickListener(
-                new Button.OnLongClickListener() {
-                    public boolean onLongClick (View v) {
+//                new Button.OnLongClickListener() {
+//                    public boolean onLongClick (View v) {
+                (v)-> {
                         morseMessage = morseMessage + "-";
                         tv.setText(morseMessage);
                         return true;
                     }
-                }
         );
 
         // Short Press
         morseMessage = morseMessage + '.';
         tv.setText(morseMessage);
+
+        beepSoundMP = MediaPlayer.create(this, R.raw.short_beep);
+//            Short beep for a .
+        beepSoundMP.start();
     }
 
     /*
@@ -87,7 +94,7 @@ public class MorseInputActivity extends AppCompatActivity {
 
         // Calls function to translate character that was just typed into English
         translateString(view);
-        
+
         TextView tv = findViewById(R.id.tv_morse_input);
 
         String newMessage = "";
