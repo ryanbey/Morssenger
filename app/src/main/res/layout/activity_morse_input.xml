@@ -93,6 +93,7 @@
 
         android:layout_marginBottom="8dp"
         android:background="@drawable/button_send"
+        android:onClick="sendTranslatedMessage"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/btn_morse_input_dot"
@@ -114,9 +115,10 @@
 
     <TextView
         android:id="@+id/tv_translated_mesasge"
-        android:layout_width="wrap_content"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:onClick="sendTranslatedMessage"
         android:text="Translated Message"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_backspace"

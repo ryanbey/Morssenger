@@ -84,7 +84,8 @@ public class Translator {
             case "/":
                     return " ";
             default:
-                    throw new IllegalStateException("Unexpected value: " + morseChar);
+                    //throw new IllegalStateException("Unexpected value: " + morseChar);
+                    return "?";
         }
     }
 
