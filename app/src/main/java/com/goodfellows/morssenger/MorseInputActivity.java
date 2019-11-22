@@ -25,17 +25,23 @@ public class MorseInputActivity extends AppCompatActivity {
     public void displayMessage(View view) {
         final TextView tv = findViewById(R.id.tv_morse_input);
 //
-        MediaPlayer beepSoundMP = null;
+        MediaPlayer beepSoundMP;
 //
         // Long Press
         Button button = findViewById(R.id.btn_morse_input_dot);
         button.setOnLongClickListener(
 //                new Button.OnLongClickListener() {
 //                    public boolean onLongClick (View v) {
-                (v)-> {
-                        morseMessage = morseMessage + "-";
-                        tv.setText(morseMessage);
-                        return true;
+                 (v)-> {
+                     morseMessage = morseMessage + "-";
+                     tv.setText(morseMessage);
+
+                     MediaPlayer beepSoundLongMP;
+                     beepSoundLongMP = MediaPlayer.create(this, R.raw.long_beep);
+//                     long beep for a -
+                     beepSoundLongMP.start();
+
+                     return true;
                     }
         );
 
