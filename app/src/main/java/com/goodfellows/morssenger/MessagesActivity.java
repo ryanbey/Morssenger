@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MessagesActivity extends AppCompatActivity {
 
@@ -19,6 +21,11 @@ public class MessagesActivity extends AppCompatActivity {
         setTitle("Contact Name");
 
         Intent intent = getIntent();
+    }
+
+    public void getTranslatedMessage(String translatedMessage) {
+        EditText et = findViewById(R.id.et_enter_message);
+        et.setText(translatedMessage);
     }
 
     public void displayMorseInputActivity(View view) {

@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 public class MorseInputActivity extends AppCompatActivity {
 
-    String message = "";
+    String morseMessage = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,43 +29,55 @@ public class MorseInputActivity extends AppCompatActivity {
         button.setOnLongClickListener(
                 new Button.OnLongClickListener() {
                     public boolean onLongClick (View v) {
-                        message = message + "-";
-                        tv.setText(message);
+                        morseMessage = morseMessage + "-";
+                        tv.setText(morseMessage);
                         return true;
                     }
                 }
         );
 
         // Short Press
-        message = message + '.';
-        tv.setText(message);
+        morseMessage = morseMessage + '.';
+        tv.setText(morseMessage);
     }
 
     /*
     DISPLAYS SLASH
     */
     public void displaySlash(View view) {
+
+        // Calls function to translate character that was just typed into English
+        translateString(view);
+
         TextView tv = findViewById(R.id.tv_morse_input);
-        message = message + " / ";
-        tv.setText(message);
+        morseMessage = morseMessage + " / ";
+        tv.setText(morseMessage);
     }
 
     /*
     DISPLAYS SPACE FOR NEXT CHARACTER
     */
     public void displaySpace(View view) {
+
+        // Calls function to translate character that was just typed into English
+        translateString(view);
+
         TextView tv = findViewById(R.id.tv_morse_input);
-        message = message + " ";
-        tv.setText(message);
+        morseMessage = morseMessage + " ";
+        tv.setText(morseMessage);
     }
 
     /*
     CLEARS MESSAGE
     */
     public void clearMessage (View view) {
+
+        // Calls function to translate character that was just typed into English
+        translateString(view);
+
         TextView tv = findViewById(R.id.tv_morse_input);
-        message = "";
-        tv.setText(message);
+        morseMessage = "";
+        tv.setText(morseMessage);
     }
 
     /*
@@ -73,22 +85,46 @@ public class MorseInputActivity extends AppCompatActivity {
     */
     public void backspace(View view) {
 
+        // Calls function to translate character that was just typed into English
+        translateString(view);
+        
         TextView tv = findViewById(R.id.tv_morse_input);
 
         String newMessage = "";
 
-        // TODO: Add capability to delete " / " and " "
+        // Add capability to delete " / " and " "
 
-        if (message != null && message.length() > 0) {
-            newMessage = message.substring(0, message.length() - 1);
+        if (morseMessage != null && morseMessage.length() > 0) {
+            newMessage = morseMessage.substring(0, morseMessage.length() - 1);
         }
 
-        message = newMessage;
-        tv.setText(message);
+        morseMessage = newMessage;
+        tv.setText(morseMessage);
     }
 
-    public void translateCharacter(View view) {
+    /*
+    Translates the character that was just typed into English
+    */
+    public void translateString(View view) {
 
+        String englishMessage;
+        TextView tv = findViewById(R.id.tv_translated_mesasge);
+
+        // Convert the character to English
+        Translator translator = new Translator();
+        englishMessage = translator.ConvertToEnglish(morseMessage);
+
+        tv.setAllCaps(true);
+        tv.setText(englishMessage);
+    }
+
+    /*
+    Sends translated message to MessagesActivity editText
+    */
+    public void sendTranslatedMessage(View view) {
+
+        MessagesActivity ma = new MessagesActivity();
+        ma.getTranslatedMessage(morseMessage);
     }
 }
 
