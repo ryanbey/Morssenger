@@ -74,12 +74,12 @@ public class MessagesActivity extends AppCompatActivity {
 
             case R.id.item5:
                 Toast.makeText(this, "Glossery selected", Toast.LENGTH_SHORT).show();
-//
-//                // Create an Intent to start the second activity
-//                Intent glosseryIntent = new Intent(this, GlossaryMenu.class);
-//
-//                // Start the new activity.
-//                startActivity(glosseryIntent);
+
+                // Create an Intent to start the second activity
+                Intent glosseryIntent = new Intent(this, GlossaryMenu.class);
+
+                // Start the new activity.
+                startActivity(glosseryIntent);
                 return true;
 
             default:
