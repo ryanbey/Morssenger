@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +29,12 @@ public class MessagesActivity extends AppCompatActivity {
         setTitle("Contact Name");
 
         Intent intent = getIntent();
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.example_menu, menu);
+        return true;
     }
 
     public void getTranslatedMessage(String translatedMessage) {
@@ -76,10 +84,10 @@ public class MessagesActivity extends AppCompatActivity {
                 Toast.makeText(this, "Glossery selected", Toast.LENGTH_SHORT).show();
 
                 // Create an Intent to start the second activity
-                Intent glosseryIntent = new Intent(this, GlossaryMenu.class);
+                Intent glossaryIntent = new Intent(this, GlossaryMenu.class);
 
                 // Start the new activity.
-                startActivity(glosseryIntent);
+                startActivity(glossaryIntent);
                 return true;
 
             default:
