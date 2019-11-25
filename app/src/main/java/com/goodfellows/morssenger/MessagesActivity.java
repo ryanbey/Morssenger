@@ -54,29 +54,63 @@ public class MessagesActivity extends AppCompatActivity {
             case R.id.item1:
                 Toast.makeText(this, "Sound selected", Toast.LENGTH_SHORT).show();;
 //                Button playBeepSound = (Button) this.findViewById(R.id.play);
-
+//                Button playBeepSound = this.findViewById(R.id.button);
+//                playBeepSound.setOnClickListener(
+////                        view on click listener;
+//                        (v) -> {
+//                            EditText morseText = findViewById(R.id.morse);
+//                            String morseCode = morseText.getText().toString();
+//                            morseMediaPlayer player = new morseMediaPlayer(morseCode, this);
+//                            player.note();
+//                        });
                 return true;
 
             case R.id.item2:
                 Toast.makeText(this, "Vibraton selected", Toast.LENGTH_SHORT).show();
 
-//                Button buzz = (Button) this.findViewById(R.id.play);
+//                Button playVibration = this.findViewById(R.id.button);
+//                playVibration.setOnClickListener(
+////                view on click listener;
+//                        (v) -> {
+//                            EditText morseText = findViewById(R.id.morse);
+//                            String morseCode = morseText.getText().toString();
+//                            morseVibrationPlayer player = new morseVibrationPlayer(morseCode, this);
+//                            Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+//                            player.vibration();
+//                        });
 
                 return true;
 
             case R.id.item3:
 //                both sound and vibration
                 Toast.makeText(this, "Sound and Vibration selected", Toast.LENGTH_SHORT).show();
-
-//                Button play = (Button) this.findViewById(R.id.play);
-
+//
+//                Button playSoundAndVibration = this.findViewById(R.id.button);
+//                playSoundAndVibration.setOnClickListener(
+////                        view on click listener;
+//                        (v) -> {
+//                            EditText morseText = findViewById(R.id.morse);
+//                            String morseCode = morseText.getText().toString();
+//                            morseMediaPlayer player = new morseMediaPlayer(morseCode, this);
+//                            player.note();
+//
+//                            morseVibrationPlayer player = new morseVibrationPlayer(morseCode, this);
+//                            Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+//                            player.vibration();
+//                        });
                 return true;
 
             case R.id.item4:
 //                Meant to make it so that the button will go back to doing nothing
                 Toast.makeText(this, "None selected", Toast.LENGTH_SHORT).show();
 
-//                Button nothing = (Button) this.findViewById(R.id.play);
+//                 Button nothing = (Button) this.findViewById(R.id.play);
+//
+//                nothing.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                    }
+//                });
 
                 return true;
 
