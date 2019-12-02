@@ -2,17 +2,19 @@ package com.goodfellows.morssenger;
 
 import java.util.Date;
 
-public class TextMessage {
+public class Message {
     private String text;
     private String textSender;
     private long textTime;
+    private boolean belongsToCurrentUser;
 
-    public TextMessage(){}
+    public Message(){}
 
-    public TextMessage(String text, String textSender){
+    public Message(String text, String textSender, boolean belongsToCurrentUser){
         this.text = text;
         this.textSender = textSender;
         this.textTime = new Date().getTime();
+        this.belongsToCurrentUser = belongsToCurrentUser;
     }
 
     public String getText(){return text;}
@@ -26,5 +28,9 @@ public class TextMessage {
     public void setTextSender(String textSender){this.text = textSender;}
 
     public void setTextTime(long textTime){this.textTime = textTime;}
+
+    public boolean isBelongsToCurrentUser() {
+        return belongsToCurrentUser;
+    }
 }
 
