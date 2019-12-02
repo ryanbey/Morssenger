@@ -35,10 +35,10 @@ public class MorseInputActivity extends AppCompatActivity {
                      morseMessage = morseMessage + "-";
                      tv.setText(morseMessage);
 
-                     MediaPlayer beepSoundLongMP;
-                     beepSoundLongMP = MediaPlayer.create(this, R.raw.long_beep);
-//                     long beep for a -
-                     beepSoundLongMP.start();
+//                   MediaPlayer beepSoundLongMP;
+//                   beepSoundLongMP = MediaPlayer.create(this, R.raw.long_beep);
+//                   long beep for a -
+//                   beepSoundLongMP.start();
 
                      return true;
                     }

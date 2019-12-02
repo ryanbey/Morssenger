@@ -6,13 +6,13 @@ import android.os.Vibrator;
 import static android.content.Context.VIBRATOR_SERVICE;
 
 
-public class morseVibrationPlayer {
+public class MorseVibrationPlayer {
 
     private String morseCode;
     private int morsePosition;
     private MessagesActivity activity;
 
-    public morseVibrationPlayer(String morseCode, MessagesActivity activity) {
+    public MorseVibrationPlayer(String morseCode, MessagesActivity activity) {
         this.morseCode = morseCode;
         this.activity = activity;
     }

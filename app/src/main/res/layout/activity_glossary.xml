@@ -4,21 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GlossaryMenu">
+    tools:context=".GlossaryActivity">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
         android:text="A = .-       B = -...\nC = .. .     D = -..\nE = .         F = .-.\nG = --       H = ....\nI = ..         J = -.-.\nK = -.-      L = -\nM = --      N = -.\nO = . .      P = .....\nQ = ..-.     R = . ..\nS = ...       T = -\nU = ..-      V = ...-\nW = .--     X = .-..\nY = .. ..     Z = ... .\n"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#110713"
         android:textSize="38sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.035"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

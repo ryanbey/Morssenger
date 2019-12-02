@@ -3,14 +3,16 @@ package com.goodfellows.morssenger;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.widget.TextView;
 
-public class GlossaryMenu extends AppCompatActivity {
+public class GlossaryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_glossary_menu);
+        setContentView(R.layout.activity_glossary);
+
+        Utils.greenStatusBar(this, R.color.colorMorseGreen);
+        setTitle("Glossary");
     }
 
 //   "A = .-\nB = -...\nC = .. .\nD = -..\nE = .\nF = .-.\nG = --\nH = ....\nI = ..\nJ = -.-.\nK = -.-\nL = -\nM = --\nN = -.\nO = . .\nP = .....\nQ = ..-.\nR = . ..\nS = ...\nT = -\nU = ..-\nV = ...-\nW = .--\nX = .-..\nY = .. ..\nZ = ... .\n"

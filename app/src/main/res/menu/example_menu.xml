@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/item5"
-        android:icon="@drawable/white_dots"
+    <item
+        android:id="@+id/item5"
+        android:icon="@drawable/ic_book_512"
         android:title="sound test"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
 
     <item android:id="@+id/item0"
-        android:icon="@drawable/white_dots"
+        android:icon="@drawable/ic_white_dots"
         android:title="sound test"
         app:showAsAction="ifRoom">
         <menu>

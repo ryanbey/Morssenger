@@ -2,14 +2,14 @@ package com.goodfellows.morssenger;
 
 import android.media.MediaPlayer;
 
-public class morseMediaPlayer {
+public class MorseMediaPlayer {
 
 
     private String morseCode;
     private int morsePosition;
     private MessagesActivity activity;
 
-    public morseMediaPlayer(String morseCode, MessagesActivity activity) {
+    public MorseMediaPlayer(String morseCode, MessagesActivity activity) {
         this.morseCode = morseCode;
         this.activity = activity;
     }

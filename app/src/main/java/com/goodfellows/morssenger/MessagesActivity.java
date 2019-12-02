@@ -4,16 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MessagesActivity extends AppCompatActivity {
@@ -60,7 +56,7 @@ public class MessagesActivity extends AppCompatActivity {
 //                        (v) -> {
 //                            EditText morseText = findViewById(R.id.morse);
 //                            String morseCode = morseText.getText().toString();
-//                            morseMediaPlayer player = new morseMediaPlayer(morseCode, this);
+//                            MorseMediaPlayer player = new MorseMediaPlayer(morseCode, this);
 //                            player.note();
 //                        });
                 return true;
@@ -74,7 +70,7 @@ public class MessagesActivity extends AppCompatActivity {
 //                        (v) -> {
 //                            EditText morseText = findViewById(R.id.morse);
 //                            String morseCode = morseText.getText().toString();
-//                            morseVibrationPlayer player = new morseVibrationPlayer(morseCode, this);
+//                            MorseVibrationPlayer player = new MorseVibrationPlayer(morseCode, this);
 //                            Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 //                            player.vibration();
 //                        });
@@ -91,10 +87,10 @@ public class MessagesActivity extends AppCompatActivity {
 //                        (v) -> {
 //                            EditText morseText = findViewById(R.id.morse);
 //                            String morseCode = morseText.getText().toString();
-//                            morseMediaPlayer player = new morseMediaPlayer(morseCode, this);
+//                            MorseMediaPlayer player = new MorseMediaPlayer(morseCode, this);
 //                            player.note();
 //
-//                            morseVibrationPlayer player = new morseVibrationPlayer(morseCode, this);
+//                            MorseVibrationPlayer player = new MorseVibrationPlayer(morseCode, this);
 //                            Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 //                            player.vibration();
 //                        });
@@ -115,10 +111,10 @@ public class MessagesActivity extends AppCompatActivity {
                 return true;
 
             case R.id.item5:
-                Toast.makeText(this, "Glossery selected", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Glossery selected", Toast.LENGTH_SHORT).show();
 
                 // Create an Intent to start the second activity
-                Intent glossaryIntent = new Intent(this, GlossaryMenu.class);
+                Intent glossaryIntent = new Intent(this, GlossaryActivity.class);
 
                 // Start the new activity.
                 startActivity(glossaryIntent);
