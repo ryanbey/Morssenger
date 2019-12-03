@@ -1,10 +1,13 @@
 package com.goodfellows.morssenger;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MorseInputActivity extends AppCompatActivity {
@@ -16,6 +19,16 @@ public class MorseInputActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_morse_input);
         getSupportActionBar().hide();
+
+        Button butt = findViewById(R.id.btn_confirm);
+        butt.setOnClickListener((view) -> {
+            TextView message = findViewById(R.id.tv_translated_mesasge);
+            Intent i = new Intent();
+            i.putExtra("MESSAGE", message.getText().toString());
+            setResult(0, i);
+            finish();
+        });
+
     }
 
     /*

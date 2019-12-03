@@ -1,6 +1,7 @@
 package com.goodfellows.morssenger;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,7 +10,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class MessagesActivity extends AppCompatActivity {
@@ -17,14 +20,14 @@ public class MessagesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        overridePendingTransition(R.anim.slidein, R.anim.slideout);
+        //overridePendingTransition(R.anim.slidein, R.anim.slideout);
         setContentView(R.layout.activity_messages);
 
         // Layout Stuff
         Utils.greenStatusBar(this, R.color.colorMorseGreen);
         setTitle("Contact Name");
 
-        Intent intent = getIntent();
+        //Intent intent = getIntent();
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -39,16 +42,22 @@ public class MessagesActivity extends AppCompatActivity {
     }
 
     public void displayMorseInputActivity(View view) {
+        Intent i = new Intent(this, MorseInputActivity.class);
+        startActivityForResult(i, 0);
+    }
 
-        Intent iMorseInput = new Intent(this, MorseInputActivity.class);
-        startActivity(iMorseInput);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        EditText et = findViewById(R.id.et_enter_message);
+        et.setText(data.getStringExtra("MESSAGE"));
     }
 
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
             case R.id.item1:
-                Toast.makeText(this, "Sound selected", Toast.LENGTH_SHORT).show();;
+                Toast.makeText(this, "Sound selected", Toast.LENGTH_SHORT).show();
 //                Button playBeepSound = (Button) this.findViewById(R.id.play);
 //                Button playBeepSound = this.findViewById(R.id.button);
 //                playBeepSound.setOnClickListener(
@@ -124,6 +133,4 @@ public class MessagesActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
 }

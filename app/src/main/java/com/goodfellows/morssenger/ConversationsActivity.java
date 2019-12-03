@@ -5,6 +5,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 
 public class ConversationsActivity extends AppCompatActivity {
@@ -24,6 +29,14 @@ public class ConversationsActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: started");
 
         initImageBitmaps();
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Open new message activity
+            }
+        });
     }
 
     private void initImageBitmaps() {
