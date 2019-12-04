@@ -3,7 +3,6 @@
     package="com.goodfellows.morssenger">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
@@ -13,12 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MorseInputActivity"></activity>
+        <activity android:name=".AddContact"></activity>
+        <activity android:name=".MorseInputActivity" />
         <activity android:name=".MessagesActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".ConversationsActivity" />
-        <activity android:name=".GlossaryActivity"></activity>
+        <activity android:name=".GlossaryActivity" />
         <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

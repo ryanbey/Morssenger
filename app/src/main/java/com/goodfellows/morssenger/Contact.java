@@ -16,3 +16,4 @@ public class Contact {
         messages.add(message);
     }
 }
+
