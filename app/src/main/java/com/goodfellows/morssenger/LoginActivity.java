@@ -23,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener authListener;
     private Button loginBtn;
     private EditText userEmail, userPassword;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +44,11 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = (Button) findViewById(R.id.button_login);
 
         // Get current user
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user = FirebaseAuth.getInstance().getCurrentUser();
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-            FirebaseUser user = firebaseAuth.getCurrentUser();
+             user = firebaseAuth.getCurrentUser();
             if (user != null) {
                 // launch conversation activity if user is logged in
                 Intent existingUser = new Intent(LoginActivity.this, ConversationsActivity.class);

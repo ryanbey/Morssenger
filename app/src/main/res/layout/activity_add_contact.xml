@@ -7,7 +7,7 @@
     tools:context=".AddContactActivity">
 
     <EditText
-        android:id="@+id/recipient"
+        android:id="@+id/et_recipient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="128dp"
@@ -19,12 +19,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/addContact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Add Contact"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipient" />
+        app:layout_constraintTop_toBottomOf="@+id/et_recipient" />
 </androidx.constraintlayout.widget.ConstraintLayout>

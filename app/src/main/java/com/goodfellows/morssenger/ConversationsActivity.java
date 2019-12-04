@@ -36,7 +36,7 @@ public class ConversationsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // Open new message activity
                 Intent intent = new Intent(ConversationsActivity.this, AddContactActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 0);
             }
         });
     }
@@ -58,5 +58,11 @@ public class ConversationsActivity extends AppCompatActivity {
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(contactNames, messages, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+
+    protected void onActivityResult()
+    {
+
     }
 }

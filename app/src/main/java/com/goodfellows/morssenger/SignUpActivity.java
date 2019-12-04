@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -106,14 +107,21 @@ public class SignUpActivity extends AppCompatActivity {
     // Sends new user information to firebase
     private void addUserTofirebase(String email, String password, String fname, String lname){
 
-        User user = new User();
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                User user = new User();
 
-        user.setEmail(email);
-        user.setPassword(password);
-        user.setFirstName(fname);
-        user.setLastName(lname);
-        FirebaseDatabase.getInstance().getReference("users").push().setValue(user);
-        auth.createUserWithEmailAndPassword(user.email, user.password);
+                user.setEmail(email);
+                user.setPassword(password);
+                user.setFirstName(fname);
+                user.setLastName(lname);
+
+                FirebaseUser FBuser = auth.getCurrentUser();
+                String uid = FBuser.getUid();
+                FirebaseDatabase.getInstance().getReference("users/" + uid).setValue(user);
+            }
+        });
     }
 
     private void updateProgressBar(boolean isOn) {
