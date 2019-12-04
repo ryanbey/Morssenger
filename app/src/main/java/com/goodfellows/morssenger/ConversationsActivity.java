@@ -37,8 +37,8 @@ public class ConversationsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Open new message activity
-                //Intent intent = new Intent(this, AddContact.class);
-                //startActivity(intent);
+                Intent intent = new Intent(ConversationsActivity.this,AddContact.class);
+                startActivity(intent);
             }
         });
     }
