@@ -36,6 +36,17 @@ public class MorseInputActivity extends AppCompatActivity {
         });
     }
 
+
+
+//    A = .-    B = -...  C = -.-.
+//    D = -..   E = .     F = ..-.
+//    G = --.   H = ....  I = ..
+//    J = .---  K = -.-   L = .-..
+//    M = --    N = -.    O = ---
+//    P = .--.  Q = --.-  R = .-.
+//    S = ...   T = -     U = ..-
+//    V = ...-  W = .--   X = -..-
+
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.dropdown_glossary_menu, menu);

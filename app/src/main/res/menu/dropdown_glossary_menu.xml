@@ -7,28 +7,28 @@
         app:showAsAction="ifRoom">
         <menu>
             <item android:id="@+id/item1"
-                android:title="A = .-    B = -...  C = .."/>
+                android:title="A = .-    B = -...  C = -.-."/>
 
             <item android:id="@+id/item2"
-                android:title="D = -..   E = .     F = .-." />
+                android:title="D = -..   E = .     F = ..-." />
 
             <item android:id="@+id/item3"
-                android:title="G = --    H = ....  I = .." />
+                android:title="G = --.   H = ....  I = .." />
 
             <item android:id="@+id/item4"
-                android:title="J = -.-.  K = -.-   L = -" />
+                android:title="J = .---  K = -.-   L = .-.." />
 
             <item android:id="@+id/item5"
-                android:title="M = --    N = -.    O = . ." />
+                android:title="M = --    N = -.    O = ---" />
 
             <item android:id="@+id/item6"
-                android:title="P = ..... Q = ..-.  R = . .." />
+                android:title="P = ..... Q = ..-.  R = ..." />
 
             <item android:id="@+id/item7"
                 android:title="S = ...   T = -     U = ..-" />
 
             <item android:id="@+id/item8"
-                android:title="V = ...-  W = .--   X = .-.." />
+                android:title="V = ...-  W = .--   X = -..-" />
 
             <item android:id="@+id/item9"
                 android:title="Y = .. .. Z = ... . ? = something" />
