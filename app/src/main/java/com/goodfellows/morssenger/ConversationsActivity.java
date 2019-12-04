@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -19,9 +18,8 @@ public class ConversationsActivity extends AppCompatActivity {
     private static final String TAG = "ConversationsActivity";
 
     // Variables
-    private ArrayList<String> mNames = new ArrayList<>();
+    private ArrayList<String> contactNames = new ArrayList<>();
     private ArrayList<String> mImageURLs = new ArrayList<>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +35,7 @@ public class ConversationsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Open new message activity
-                Intent intent = new Intent(ConversationsActivity.this,AddContact.class);
+                Intent intent = new Intent(ConversationsActivity.this, AddContactActivity.class);
                 startActivity(intent);
             }
         });
@@ -49,10 +47,10 @@ public class ConversationsActivity extends AppCompatActivity {
 
         // App doesn't show anything without test images in here currently
         mImageURLs.add("https://i.redd.it/snywd65vzt7y.jpg");
-        mNames.add("Contact Name");
+        contactNames.add("Test");
 
         mImageURLs.add("https://i.redd.it/bt2jpx8q9hu31.jpg");
-        mNames.add("Contact Name");
+        contactNames.add("Contact Name");
 
         // This can be done in onCreate if we decide not to use images for contacts
         initRecyclerView();
@@ -62,7 +60,7 @@ public class ConversationsActivity extends AppCompatActivity {
         Log.d(TAG, "initRecyclerView: init recyclerview");
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mNames, mImageURLs, this);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(contactNames, mImageURLs, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

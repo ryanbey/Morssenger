@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,15 +26,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     // Tag for log messages
     private static final String TAG = "RecyclerViewAdapter";
 
-    private ArrayList<String> mImageNames = new ArrayList<>();
-    private ArrayList<String> mImages = new ArrayList<>();
-    private Context mContext;
+    private ArrayList<String> contactNames = new ArrayList<>();
+    private ArrayList<String> messages = new ArrayList<>();
+    private Context context;
 
     // Default Constructor
-    public RecyclerViewAdapter(ArrayList<String> imageNames, ArrayList<String> images, Context context) {
-        mImageNames = imageNames;
-        mImages = images;
-        mContext = context;
+    public RecyclerViewAdapter(ArrayList<String> contactNames, ArrayList<String> messages, Context context) {
+        this.contactNames = contactNames;
+        this.messages = messages;
+        this.context = context;
     }
 
 
@@ -54,35 +55,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         Log.d(TAG, "onBindViewHolder: called");
 
-        // Loads images from the internet into our imageViews
-        // Glide is a library that lets us edit images more easily
-        Glide.with(mContext)
-                .asBitmap()
-                .load(mImages.get(position))
-                .into(holder.image);
-
-        holder.imageName.setText(mImageNames.get(position));
-
         // Starts messages activity
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "onClick: clicked on: " + mImageNames.get(position));
-                //Toast.makeText(mContext,mImageNames.get(position), Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onClick: clicked on: " + contactNames.get(position));
+                //Toast.makeText(context,contactNames.get(position), Toast.LENGTH_SHORT).show();
 
                 // Start messages activity
-                Intent intent = new Intent(mContext, MessagesActivity.class);
-                mContext.startActivity(intent);
+                Intent intent = new Intent(context, MessagesActivity.class);
+                context.startActivity(intent);
             }
         });
-
     }
 
 
     // Tells RecyclerViewAdapter how many items are in the list so it knows how many to display
     @Override
     public int getItemCount() {
-        return mImageNames.size();
+        return contactNames.size();
     }
 
 
@@ -97,7 +88,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             super(itemView);
 
             image = itemView.findViewById(R.id.image);
-            imageName = itemView.findViewById(R.id.contact_name);
+            imageName = itemView.findViewById(R.id.tv_contact_name);
             parentLayout = itemView.findViewById(R.id.parent_layout);
 
         }
