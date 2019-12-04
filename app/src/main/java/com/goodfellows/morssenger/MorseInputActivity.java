@@ -3,8 +3,11 @@ package com.goodfellows.morssenger;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,7 +21,10 @@ public class MorseInputActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_morse_input);
-        getSupportActionBar().hide();
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xfafafa));
+//        getSupportActionBar().;
+        setTitle("");
+
 
         Button butt = findViewById(R.id.btn_confirm);
         butt.setOnClickListener((view) -> {
@@ -28,7 +34,12 @@ public class MorseInputActivity extends AppCompatActivity {
             setResult(0, i);
             finish();
         });
+    }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.dropdown_glossary_menu, menu);
+        return true;
     }
 
     /*

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/item0"
+        android:icon="@drawable/ic_book_black_24dp"
+        android:title="glossary"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item android:id="@+id/item1"
+                android:title="A = .-    B = -...  C = .."/>
+
+            <item android:id="@+id/item2"
+                android:title="D = -..   E = .     F = .-." />
+
+            <item android:id="@+id/item3"
+                android:title="G = --    H = ....  I = .." />
+
+            <item android:id="@+id/item4"
+                android:title="J = -.-.  K = -.-   L = -" />
+
+            <item android:id="@+id/item5"
+                android:title="M = --    N = -.    O = . ." />
+
+            <item android:id="@+id/item6"
+                android:title="P = ..... Q = ..-.  R = . .." />
+
+            <item android:id="@+id/item7"
+                android:title="S = ...   T = -     U = ..-" />
+
+            <item android:id="@+id/item8"
+                android:title="V = ...-  W = .--   X = .-.." />
+
+            <item android:id="@+id/item9"
+                android:title="Y = .. .. Z = ... . ? = something" />
+        </menu>
+    </item>
+</menu>
