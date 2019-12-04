@@ -17,6 +17,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,6 +59,15 @@ public class MessagesActivity extends AppCompatActivity {
                     MessageBubble messageBubble = new MessageBubble(et.getText().toString(), myMessage);
                     MessageBubbles.add(messageBubble);
                     adapter.notifyDataSetChanged();
+
+
+
+                    // sets a new reference in firebase with a string from messages
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef = database.getReference("message");
+
+                    myRef.setValue(et.getText().toString());
+
                     et.setText("");
                     if (myMessage) {
                         myMessage = true;
