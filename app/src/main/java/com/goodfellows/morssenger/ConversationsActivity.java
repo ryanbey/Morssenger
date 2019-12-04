@@ -19,7 +19,7 @@ public class ConversationsActivity extends AppCompatActivity {
 
     // Variables
     private ArrayList<String> contactNames = new ArrayList<>();
-    private ArrayList<String> mImageURLs = new ArrayList<>();
+    private ArrayList<String> messages = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class ConversationsActivity extends AppCompatActivity {
         Log.d(TAG, "initRecyclerView: init recyclerview");
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(contactNames, mImageURLs, this);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(contactNames, messages, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

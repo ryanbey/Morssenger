@@ -80,15 +80,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     // Handles different views with their descriptions
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        CircleImageView image;
-        TextView imageName;
+        TextView contactName;
         RelativeLayout parentLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            image = itemView.findViewById(R.id.image);
-            imageName = itemView.findViewById(R.id.tv_contact_name);
+            contactName = itemView.findViewById(R.id.tv_contact_name);
             parentLayout = itemView.findViewById(R.id.parent_layout);
 
         }
