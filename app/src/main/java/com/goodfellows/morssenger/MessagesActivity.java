@@ -58,8 +58,6 @@ public class MessagesActivity extends AppCompatActivity {
                     adapter.notifyDataSetChanged();
                     et.setText("");
                     if (myMessage) {
-                        myMessage = false;
-                    } else {
                         myMessage = true;
                     }
                 }
