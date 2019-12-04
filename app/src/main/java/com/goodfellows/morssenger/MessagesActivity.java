@@ -42,8 +42,8 @@ public class MessagesActivity extends AppCompatActivity {
     }
 
     public void displayMorseInputActivity(View view) {
-        Intent i = new Intent(this, MorseInputActivity.class);
-        startActivityForResult(i, 0);
+            Intent i = new Intent(this, MorseInputActivity.class);
+            startActivityForResult(i, 0);
     }
 
     @Override

@@ -79,6 +79,7 @@
         android:background="#00FFFFFF"
         android:onClick="displayConversationsActivity"
         android:text="skip sign in"
+        android:textColor="#fafafa"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

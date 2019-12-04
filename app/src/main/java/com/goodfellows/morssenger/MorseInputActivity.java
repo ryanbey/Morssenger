@@ -61,9 +61,9 @@ public class MorseInputActivity extends AppCompatActivity {
         morseMessage = morseMessage + '.';
         tv.setText(morseMessage);
 
-        beepSoundMP = MediaPlayer.create(this, R.raw.short_beep);
+//        beepSoundMP = MediaPlayer.create(this, R.raw.short_beep);
 //            Short beep for a .
-        beepSoundMP.start();
+//        beepSoundMP.start();
     }
 
     /*
@@ -97,11 +97,12 @@ public class MorseInputActivity extends AppCompatActivity {
     */
     public void clearMessage (View view) {
 
+        morseMessage = "";
+
         // Calls function to translate character that was just typed into English
         translateString(view);
 
         TextView tv = findViewById(R.id.tv_morse_input);
-        morseMessage = "";
         tv.setText(morseMessage);
     }
 
