@@ -28,7 +28,7 @@ public class ConversationsActivity extends AppCompatActivity {
         Utils.greenStatusBar(this, R.color.colorMorseGreen); // Green status bar
         Log.d(TAG, "onCreate: started");
 
-        initImageBitmaps();
+        initListItems();
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -41,15 +41,10 @@ public class ConversationsActivity extends AppCompatActivity {
         });
     }
 
-    private void initImageBitmaps() {
+    private void initListItems() {
         Log.d(TAG, "initImageBitmaps: preparing bitmaps");
-        // We can add image urls in here for contact pictures
 
-        // App doesn't show anything without test images in here currently
-        mImageURLs.add("https://i.redd.it/snywd65vzt7y.jpg");
         contactNames.add("Test");
-
-        mImageURLs.add("https://i.redd.it/bt2jpx8q9hu31.jpg");
         contactNames.add("Contact Name");
 
         // This can be done in onCreate if we decide not to use images for contacts
