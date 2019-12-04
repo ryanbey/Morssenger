@@ -10,7 +10,9 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="A = .-       B = -...\nC = .. .     D = -..\nE = .         F = .-.\nG = --       H = ....\nI = ..         J = -.-.\nK = -.-      L = -\nM = --      N = -.\nO = . .      P = .....\nQ = ..-.     R = . ..\nS = ...       T = -\nU = ..-      V = ...-\nW = .--     X = .-..\nY = .. ..     Z = ... .\n"
+        android:text="A = .-       B = -...\nC = -.-.     D = -..\nE = .         F = ..-.\nG = --.
+     H = ....\nI  = ..         J = .---\nK = -.-       L = .-..\nM = --       N = -.\nO = ---
+      P = .--.\nQ = --.-      R = .-.\nS = ...        T = -\nU = ..-        V = ...-\nW = .--       X = -..-\nY = -.--       Z = --..\n"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#110713"
         android:textSize="38sp"
@@ -18,5 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+<!--    A .- B -... C -.-. D -.. E . F ..-. G &#45;&#45;. H .... I .. J .-&#45;&#45; K -.- L .-.. M &#45;&#45; N -. O -&#45;&#45; P .&#45;&#45;. Q &#45;&#45;.- R .-. S ... T - U ..- V ...- W .&#45;&#45; X -..- Y -.&#45;&#45; Z &#45;&#45;..-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
