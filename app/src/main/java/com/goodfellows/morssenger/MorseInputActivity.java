@@ -46,6 +46,7 @@ public class MorseInputActivity extends AppCompatActivity {
 //    P = .--.  Q = --.-  R = .-.
 //    S = ...   T = -     U = ..-
 //    V = ...-  W = .--   X = -..-
+//    Y = -.--  Z = --..
 
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
