@@ -10,24 +10,61 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MessagesActivity extends AppCompatActivity {
+
+    boolean myMessage = true;
+    private List<MessageBubble> MessageBubbles;
+    private ArrayAdapter<MessageBubble> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //overridePendingTransition(R.anim.slidein, R.anim.slideout);
         setContentView(R.layout.activity_messages);
 
         // Layout Stuff
         Utils.greenStatusBar(this, R.color.colorMorseGreen);
         setTitle("Contact Name");
 
-        //Intent intent = getIntent();
+        MessageBubbles = new ArrayList<>();
+
+        ListView messagesListView = (ListView) findViewById(R.id.messages_list_view);
+        View buttonSend = findViewById(R.id.btn_send_message);
+        EditText et = (EditText) findViewById(R.id.et_enter_message);
+
+        // Set ListView adapter
+        adapter = new MessageAdapter(this, R.layout.their_message, MessageBubbles);
+        messagesListView.setAdapter(adapter);
+
+        // Send button
+        buttonSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (et.getText().toString().trim().equals("")) {
+                    Toast.makeText(MessagesActivity.this, "Input some text!", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Add message to list
+                    MessageBubble messageBubble = new MessageBubble(et.getText().toString(), myMessage);
+                    MessageBubbles.add(messageBubble);
+                    adapter.notifyDataSetChanged();
+                    et.setText("");
+                    if (myMessage) {
+                        myMessage = false;
+                    } else {
+                        myMessage = true;
+                    }
+                }
+            }
+        });
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

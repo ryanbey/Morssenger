@@ -1,76 +1,77 @@
 package com.goodfellows.morssenger;
 
 import android.app.Activity;
-import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MessageAdapter extends BaseAdapter {
+public class MessageAdapter extends ArrayAdapter<MessageBubble> {
 
-    List<Message> messages = new ArrayList<Message>();
-    Context context;
+    private Activity activity;
+    private List<MessageBubble> messages;
 
-    public MessageAdapter(Context context) {
-        this.context = context;
-    }
-
-    public void add(Message message) {
-        this.messages.add(message);
-        notifyDataSetChanged(); // to render the list we need to notify
+    public MessageAdapter(Activity context, int resource, List<MessageBubble> objects) {
+        super(context, resource, objects);
+        this.activity = context;
+        this.messages = objects;
     }
 
     @Override
-    public int getCount() {
-        return messages.size();
-    }
+    public View getView(int position, View convertView, ViewGroup parent) {
 
-    @Override
-    public Object getItem(int i) {
-        return messages.get(i);
-    }
+        ViewHolder holder;
+        LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 
-    @Override
-    public long getItemId(int i) {
-        return i;
-    }
+        int layoutResource = 0; // determined by view type
+        MessageBubble messageBubble = getItem(position);
+        int viewType = getItemViewType(position);
 
-    // This is the backbone of the class, it handles the creation of single ListView row (chat bubble)
-    @Override
-    public View getView(int i, View convertView, ViewGroup viewGroup) {
-        MessageViewHolder holder = new MessageViewHolder();
-        LayoutInflater messageInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-        Message message = messages.get(i);
-
-        if (message.isBelongsToCurrentUser()) { // this message was sent by us so let's create a basic chat bubble on the right
-            convertView = messageInflater.inflate(R.layout.my_message, null);
-            holder.messageBody = (TextView) convertView.findViewById(R.id.message_body);
-            convertView.setTag(holder);
-            holder.messageBody.setText(message.getText());
-        } else { // this message was sent by someone else so let's create an advanced chat bubble on the left
-            convertView = messageInflater.inflate(R.layout.their_message, null);
-            holder.messageBody = (TextView) convertView.findViewById(R.id.message_body);
-            convertView.setTag(holder);
-
-            //holder.name.setText(message.getTextSender().getName());
-            holder.messageBody.setText(message.getText());
-            //GradientDrawable drawable = (GradientDrawable) holder.avatar.getBackground();
-            //drawable.setColor(Color.parseColor(message.getMemberData().getColor()));
+        if (messageBubble.myMessage()) {
+            layoutResource = R.layout.my_message;
         }
+
+        else {
+            layoutResource = R.layout.their_message;
+        }
+
+        if (convertView != null) {
+            holder = (ViewHolder) convertView.getTag();
+        }
+
+        else {
+            convertView = inflater.inflate(layoutResource, parent, false);
+            holder = new ViewHolder(convertView);
+            convertView.setTag(holder);
+        }
+
+        // Set message content
+        holder.message.setText(messageBubble.getContent());
 
         return convertView;
     }
 
-}
+    @Override
+    public int getViewTypeCount() {
+        // return the total number of view types. this value should never change
+        // at runtime. Value 2 is returned because of left and right views.
+        return 2;
+    }
 
-class MessageViewHolder {
-    public TextView name;
-    public TextView messageBody;
+    @Override
+    public int getItemViewType(int position) {
+        // return a value between 0 and (getViewTypeCount - 1)
+        return position % 2;
+    }
+
+    private class ViewHolder {
+        private TextView message;
+
+        public ViewHolder(View v) {
+            message = (TextView) v.findViewById(R.id.message_body);
+        }
+    }
 }
