@@ -22,7 +22,6 @@ public class MorseInputActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_morse_input);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xfafafa));
-//        getSupportActionBar().;
         setTitle("");
 
 
@@ -53,16 +52,9 @@ public class MorseInputActivity extends AppCompatActivity {
         // Long Press
         Button button = findViewById(R.id.btn_morse_input_dot);
         button.setOnLongClickListener(
-//                new Button.OnLongClickListener() {
-//                    public boolean onLongClick (View v) {
                  (v)-> {
                      morseMessage = morseMessage + "-";
                      tv.setText(morseMessage);
-
-//                   MediaPlayer beepSoundLongMP;
-//                   beepSoundLongMP = MediaPlayer.create(this, R.raw.long_beep);
-//                   long beep for a -
-//                   beepSoundLongMP.start();
 
                      return true;
                     }
@@ -71,10 +63,6 @@ public class MorseInputActivity extends AppCompatActivity {
         // Short Press
         morseMessage = morseMessage + '.';
         tv.setText(morseMessage);
-
-//        beepSoundMP = MediaPlayer.create(this, R.raw.short_beep);
-//            Short beep for a .
-//        beepSoundMP.start();
     }
 
     /*

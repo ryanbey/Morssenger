@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/item0"
-        android:icon="@drawable/ic_book_black_24dp"
+        android:icon="@drawable/ic_book_green_512"
         android:title="glossary"
         app:showAsAction="ifRoom">
         <menu>
@@ -31,7 +31,7 @@
                 android:title="V = ...-  W = .--   X = .-.." />
 
             <item android:id="@+id/item9"
-                android:title="Y = .. .. Z = ... . ? = something" />
+                android:title="Y = .. .. Z = ... ." />
         </menu>
     </item>
 </menu>
