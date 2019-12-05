@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="A = .-       B = -...\nC = -.-.     D = -..\nE = .         F = ..-.\nG = --.
-     H = ....\nI  = ..         J = .---\nK = -.-       L = .-..\nM = --       N = -.\nO = ---
+     H = ....\nI  = ..        J = .---\nK = -.-       L = .-..\nM = --       N = -.\nO = ---
       P = .--.\nQ = --.-      R = .-.\nS = ...        T = -\nU = ..-        V = ...-\nW = .--       X = -..-\nY = -.--       Z = --..\n"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#110713"

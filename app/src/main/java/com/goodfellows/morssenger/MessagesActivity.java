@@ -1,9 +1,5 @@
 package com.goodfellows.morssenger;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
@@ -14,9 +10,12 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -107,11 +106,15 @@ public class MessagesActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.item1:
                 Toast.makeText(this, "Sound selected", Toast.LENGTH_SHORT).show();
+//                need to find the id of the diffent texts acording to the button clicked.
 //                Button playBeepSound = (Button) this.findViewById(R.id.play);
-//                Button playBeepSound = this.findViewById(R.id.button);
 //                playBeepSound.setOnClickListener(
 ////                        view on click listener;
 //                        (v) -> {
+
+////                            need to find the corect message and convert it to morse
+//                            Translator translator = new Translator();
+////                            need to convert mesage into a string then give it to the program.
 //                            EditText morseText = findViewById(R.id.morse);
 //                            String morseCode = morseText.getText().toString();
 //                            MorseMediaPlayer player = new MorseMediaPlayer(morseCode, this);

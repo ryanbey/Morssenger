@@ -27,7 +27,7 @@ public class MorseVibrationPlayer {
             vibrationSoundMP = MediaPlayer.create(activity, R.raw.silence);
 //            Short beep for a .
             vibrationSoundMP.start();
-            vibrator.vibrate(50);
+            vibrator.vibrate(250);
         }
 
         else if (variables == '-') {
@@ -56,7 +56,7 @@ public class MorseVibrationPlayer {
                 public void onCompletion(MediaPlayer mp) {
                     if (variables == '.' || variables == '-' || variables == ' ') {
                         try {
-                            Thread.sleep(100);
+                            Thread.sleep(450);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
