@@ -46,8 +46,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
 
-    // This class can change based on what you want the layout to look like
-    // Right now it uses the images and shows a toast when you click on a list item
+    // Handles populating recycler view and handles onClicks
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 

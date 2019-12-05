@@ -2,7 +2,7 @@ package com.goodfellows.morssenger;
 
 public class Translator {
 
-    // takes a morse code message and translates it, then returns a string
+    // Takes a morse code message and translates it, then returns a string
     public String ConvertToEnglish(String morseMessage) {
 
         int size = morseMessage.length();       // find length for loop
@@ -11,22 +11,23 @@ public class Translator {
 
         for(int i = 0; i < size; i++)
         {
-            // check for spaces and add the correct character to the message then clear morseChar
+            // Check for spaces and add the correct character to the message then clear morseChar
             if(morseMessage.charAt(i) == ' '){
                 message += checkMorse(morseChar);
                 morseChar = "";
             }
-            else{       // add characters to morseChar from morseMessage
+            // Add characters to morseChar from morseMessage
+            else {
                 morseChar += morseMessage.charAt(i);
             }
         }
 
-        // loop ends one cycle early so do one more check
+        // Loop ends one cycle early so do one more check
         message += checkMorse(morseChar);
         return message;
     }
 
-    // compares the morseChar to the morse table and returns corresponding alpha character
+    // Compares the morseChar to the morse table and returns corresponding alpha character
     private String checkMorse(String morseChar) {
         switch (morseChar) {
             case ".-":
@@ -90,7 +91,7 @@ public class Translator {
     }
 
 
-    // takes an english message and converts to morse, then returns a string morse message
+    // Takes an english message and converts to morse, then returns a string morse message
     public String ConvertToMorse(String english){
 
         String result = "";                 // the result of the code
@@ -105,7 +106,7 @@ public class Translator {
         return result;
     }
 
-    // compares the englishChar to the morse table and returns corresponding alpha character
+    // Compares the englishChar to the morse table and returns corresponding alpha character
     private String checkEnglish(char englishChar) {
         switch (englishChar) {
             case 'a':

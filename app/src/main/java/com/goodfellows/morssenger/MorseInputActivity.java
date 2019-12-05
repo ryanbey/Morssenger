@@ -4,13 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MorseInputActivity extends AppCompatActivity {
@@ -23,16 +21,6 @@ public class MorseInputActivity extends AppCompatActivity {
         setContentView(R.layout.activity_morse_input);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xfafafa));
         setTitle("");
-
-        // Sends result back to messages activity
-        Button butt = findViewById(R.id.btn_confirm);
-        butt.setOnClickListener((view) -> {
-            TextView message = findViewById(R.id.tv_translated_mesasge);
-            Intent i = new Intent();
-            i.putExtra("MESSAGE", message.getText().toString());
-            setResult(0, i);
-            finish();
-        });
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -142,12 +130,19 @@ public class MorseInputActivity extends AppCompatActivity {
     }
 
     /*
-    Sends translated message to MessagesActivity editText
+    Sends english message to MessagesActivity editText
     */
     public void sendTranslatedMessage(View view) {
 
-        MessagesActivity ma = new MessagesActivity();
-        ma.getTranslatedMessage(morseMessage);
+        // Makes sure the user's last character is included
+        displaySpace(view);
+
+        TextView message = findViewById(R.id.tv_translated_mesasge);
+        Intent i = new Intent();
+        i.putExtra("MESSAGE", message.getText().toString());
+        setResult(0, i);
+
+        finish();
     }
 }
 

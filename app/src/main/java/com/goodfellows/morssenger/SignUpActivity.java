@@ -35,12 +35,12 @@ public class SignUpActivity extends AppCompatActivity {
         updateProgressBar(false);
 
         // Set button/editText to respective IDs
-        buttonSignUp = (Button) findViewById(R.id.button_sign_up3);
-        nEmail = (EditText) findViewById(R.id.et_email);
-        nPassword = (EditText) findViewById(R.id.et_password);
-        authPassword = (EditText) findViewById(R.id.et_password_confirm);
-        nFirstName = (EditText) findViewById(R.id.et_first_name);
-        nLastName = (EditText) findViewById(R.id.et_last_name);
+        buttonSignUp = findViewById(R.id.button_sign_up3);
+        nEmail = findViewById(R.id.et_email);
+        nPassword = findViewById(R.id.et_password);
+        authPassword = findViewById(R.id.et_password_confirm);
+        nFirstName = findViewById(R.id.et_first_name);
+        nLastName = findViewById(R.id.et_last_name);
 
 
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
@@ -124,12 +124,14 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void updateProgressBar(boolean isOn) {
+
         ProgressBar pb = findViewById(R.id.progressBar);
         if (isOn) {
             pb.setVisibility(ProgressBar.VISIBLE);
         }
-       else {
-            pb.setVisibility(ProgressBar.INVISIBLE);
-       }
+
+        else {
+             pb.setVisibility(ProgressBar.INVISIBLE);
+        }
     }
 }
