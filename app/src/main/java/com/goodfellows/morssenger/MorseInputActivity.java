@@ -139,9 +139,16 @@ public class MorseInputActivity extends AppCompatActivity {
 
         TextView message = findViewById(R.id.tv_translated_mesasge);
         Intent i = new Intent();
-        i.putExtra("MESSAGE", message.getText().toString());
+
+        // Convert TextView to a string and capitalize it
+        String translatedMessage = message.getText().toString();
+        String capTranslatedMessage = translatedMessage.substring(0, 1).toUpperCase() + translatedMessage.substring(1);
+
+        // Send result back to MessagesActivity
+        i.putExtra("MESSAGE", capTranslatedMessage);
         setResult(0, i);
 
+        // Kill MorseInputActivity
         finish();
     }
 }
