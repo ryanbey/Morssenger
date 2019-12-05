@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +29,7 @@ public class MessagesActivity extends AppCompatActivity {
     boolean myMessage = true;
     private List<MessageBubble> MessageBubbles;
     private ArrayAdapter<MessageBubble> adapter;
+    private int choice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,18 @@ public class MessagesActivity extends AppCompatActivity {
         // Set ListView adapter
         adapter = new MessageAdapter(this, R.layout.their_message, MessageBubbles);
         messagesListView.setAdapter(adapter);
+
+        messagesListView.setOnItemClickListener(
+
+                (parent, view, position, id) ->{
+                if (choice == 1) {
+                    Translator translator = new Translator();
+                    String morseCode = translator.ConvertToMorse(MessageBubbles.get(position).getContent());
+//                            need to convert message into a string then give it to the program.
+                    MorseMediaPlayer player = new MorseMediaPlayer(morseCode,this);
+                    player.note();
+                }
+            });
 
         // Send button
         buttonSend.setOnClickListener(new View.OnClickListener() {
@@ -106,20 +120,7 @@ public class MessagesActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.item1:
                 Toast.makeText(this, "Sound selected", Toast.LENGTH_SHORT).show();
-//                need to find the id of the diffent texts acording to the button clicked.
-//                Button playBeepSound = (Button) this.findViewById(R.id.play);
-//                playBeepSound.setOnClickListener(
-////                        view on click listener;
-//                        (v) -> {
-
-////                            need to find the corect message and convert it to morse
-//                            Translator translator = new Translator();
-////                            need to convert mesage into a string then give it to the program.
-//                            EditText morseText = findViewById(R.id.morse);
-//                            String morseCode = morseText.getText().toString();
-//                            MorseMediaPlayer player = new MorseMediaPlayer(morseCode, this);
-//                            player.note();
-//                        });
+                choice = 1;
                 return true;
 
             case R.id.item2:
