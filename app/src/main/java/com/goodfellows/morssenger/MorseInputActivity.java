@@ -24,7 +24,7 @@ public class MorseInputActivity extends AppCompatActivity {
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xfafafa));
         setTitle("");
 
-
+        // Sends result back to messages activity
         Button butt = findViewById(R.id.btn_confirm);
         butt.setOnClickListener((view) -> {
             TextView message = findViewById(R.id.tv_translated_mesasge);
@@ -46,9 +46,7 @@ public class MorseInputActivity extends AppCompatActivity {
     */
     public void displayMessage(View view) {
         final TextView tv = findViewById(R.id.tv_morse_input);
-//
-        MediaPlayer beepSoundMP;
-//
+
         // Long Press
         Button button = findViewById(R.id.btn_morse_input_dot);
         button.setOnLongClickListener(

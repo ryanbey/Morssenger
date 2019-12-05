@@ -28,8 +28,6 @@ public class ConversationsActivity extends AppCompatActivity {
         Utils.greenStatusBar(this, R.color.colorMorseGreen); // Green status bar
         Log.d(TAG, "onCreate: started");
 
-        initListItems();
-
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,15 +37,16 @@ public class ConversationsActivity extends AppCompatActivity {
                 startActivityForResult(intent, 0);
             }
         });
+
+        initListItems();
     }
 
     private void initListItems() {
-        Log.d(TAG, "initImageBitmaps: preparing bitmaps");
+        Log.d(TAG, "initImageListItems: preparing list items");
 
         contactNames.add("Test");
-        contactNames.add("Contact Name");
+        contactNames.add("Contacasdt Name");
 
-        // This can be done in onCreate if we decide not to use images for contacts
         initRecyclerView();
     }
 
