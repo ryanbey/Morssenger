@@ -20,25 +20,25 @@ public class MorseMediaPlayer {
 
         if (variables == '.') {
             beepSoundMP = MediaPlayer.create(activity, R.raw.short_beep);
-//            Short beep for a .
+            // Short beep for a .
             beepSoundMP.start();
         }
 
         else if (variables == '-') {
             beepSoundMP = MediaPlayer.create(activity, R.raw.long_beep);
-//            long  beep for a -
+            // Long  beep for a -
             beepSoundMP.start();
         }
 
         else if (variables == ' ') {
-//            Make empty sound mp3 for a space
+            // Make empty sound mp3 for a space
             beepSoundMP = MediaPlayer.create(activity, R.raw.silence);
             beepSoundMP.start();
         }
 
         else if (variables != '.' || variables != '-' || variables != ' ') {
-//            must increment morsePosition for '/'
-//            set beepSoundMP to something so as to go into the onCompletinon function and run the next note
+            // Must increment morsePosition for '/'
+            // Set beepSoundMP to something so as to go into the onCompletion function and run the next note
             beepSoundMP = MediaPlayer.create(activity, R.raw.silence);
             beepSoundMP.start();
         }
@@ -75,6 +75,4 @@ public class MorseMediaPlayer {
             });
         }
     }
-
 }
-

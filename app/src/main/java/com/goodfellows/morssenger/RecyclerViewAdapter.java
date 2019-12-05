@@ -12,9 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.bumptech.glide.Glide;
 import java.util.ArrayList;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 /*
 RECYCLER VIEW ADAPTER
@@ -27,13 +25,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private static final String TAG = "RecyclerViewAdapter";
 
     private ArrayList<String> contactNames = new ArrayList<>();
-    private ArrayList<String> messages = new ArrayList<>();
+    private ArrayList<String> newestMessage = new ArrayList<>();
     private Context context;
 
     // Default Constructor
-    public RecyclerViewAdapter(ArrayList<String> contactNames, ArrayList<String> messages, Context context) {
+    public RecyclerViewAdapter(ArrayList<String> contactNames, ArrayList<String> newestMessage, Context context) {
         this.contactNames = contactNames;
-        this.messages = messages;
+        this.newestMessage = newestMessage;
         this.context = context;
     }
 
@@ -48,19 +46,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
 
-    // This class can change based on what you want the layout to look like
-    // Right now it uses the images and shows a toast when you click on a list item
+    // Handles populating recycler view and handles onClicks
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
         Log.d(TAG, "onBindViewHolder: called");
+
+        // Populates the top line in the recycler view
+        holder.contactName.setText(contactNames.get(position));
 
         // Starts messages activity
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onClick: clicked on: " + contactNames.get(position));
-                //Toast.makeText(context,contactNames.get(position), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, contactNames.get(position), Toast.LENGTH_SHORT).show();
 
                 // Start messages activity
                 Intent intent = new Intent(context, MessagesActivity.class);

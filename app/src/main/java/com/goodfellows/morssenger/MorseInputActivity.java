@@ -4,13 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MorseInputActivity extends AppCompatActivity {
@@ -22,18 +20,7 @@ public class MorseInputActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_morse_input);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xfafafa));
-//        getSupportActionBar().;
         setTitle("");
-
-
-        Button butt = findViewById(R.id.btn_confirm);
-        butt.setOnClickListener((view) -> {
-            TextView message = findViewById(R.id.tv_translated_mesasge);
-            Intent i = new Intent();
-            i.putExtra("MESSAGE", message.getText().toString());
-            setResult(0, i);
-            finish();
-        });
     }
 
 
@@ -59,22 +46,13 @@ public class MorseInputActivity extends AppCompatActivity {
     */
     public void displayMessage(View view) {
         final TextView tv = findViewById(R.id.tv_morse_input);
-//
-        MediaPlayer beepSoundMP;
-//
+
         // Long Press
         Button button = findViewById(R.id.btn_morse_input_dot);
         button.setOnLongClickListener(
-//                new Button.OnLongClickListener() {
-//                    public boolean onLongClick (View v) {
                  (v)-> {
                      morseMessage = morseMessage + "-";
                      tv.setText(morseMessage);
-
-//                   MediaPlayer beepSoundLongMP;
-//                   beepSoundLongMP = MediaPlayer.create(this, R.raw.long_beep);
-//                   long beep for a -
-//                   beepSoundLongMP.start();
 
                      return true;
                     }
@@ -83,10 +61,6 @@ public class MorseInputActivity extends AppCompatActivity {
         // Short Press
         morseMessage = morseMessage + '.';
         tv.setText(morseMessage);
-
-//        beepSoundMP = MediaPlayer.create(this, R.raw.short_beep);
-//            Short beep for a .
-//        beepSoundMP.start();
     }
 
     /*
@@ -168,12 +142,26 @@ public class MorseInputActivity extends AppCompatActivity {
     }
 
     /*
-    Sends translated message to MessagesActivity editText
+    Sends english message to MessagesActivity editText
     */
     public void sendTranslatedMessage(View view) {
 
-        MessagesActivity ma = new MessagesActivity();
-        ma.getTranslatedMessage(morseMessage);
+        // Makes sure the user's last character is included
+        displaySpace(view);
+
+        TextView message = findViewById(R.id.tv_translated_mesasge);
+        Intent i = new Intent();
+
+        // Convert TextView to a string and capitalize it
+        String translatedMessage = message.getText().toString();
+        String capTranslatedMessage = translatedMessage.substring(0, 1).toUpperCase() + translatedMessage.substring(1);
+
+        // Send result back to MessagesActivity
+        i.putExtra("MESSAGE", capTranslatedMessage);
+        setResult(0, i);
+
+        // Kill MorseInputActivity
+        finish();
     }
 }
 
