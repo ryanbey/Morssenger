@@ -2,6 +2,7 @@ package com.goodfellows.morssenger;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -53,6 +54,7 @@ public class MessagesActivity extends AppCompatActivity {
         messagesListView.setOnItemClickListener(
 
                 (parent, view, position, id) ->{
+//                sound
                 if (choice == 1) {
                     Translator translator = new Translator();
                     String morseCode = translator.ConvertToMorse(MessageBubbles.get(position).getContent());
@@ -60,6 +62,31 @@ public class MessagesActivity extends AppCompatActivity {
                     MorseMediaPlayer player = new MorseMediaPlayer(morseCode,this);
                     player.note();
                 }
+//                vibration
+                else if (choice == 2) {
+                    Translator translator = new Translator();
+                    String morseCode = translator.ConvertToMorse(MessageBubbles.get(position).getContent());
+                    MorseVibrationPlayer player = new MorseVibrationPlayer(morseCode, this);
+                    Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+                    player.vibration();
+                }
+//                sound and vibration
+                else if (choice == 3) {
+                    Translator translator = new Translator();
+                    String morseCode = translator.ConvertToMorse(MessageBubbles.get(position).getContent());
+
+                    MorseMediaPlayer player = new MorseMediaPlayer(morseCode, this);
+                    player.note();
+
+                    MorseVibrationPlayer player2 = new MorseVibrationPlayer(morseCode, this);
+                    Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+                    player2.vibration();
+                }
+
+//                do nothing
+                else if (choice == 4) {
+                }
+
             });
 
         // Send button
@@ -124,56 +151,24 @@ public class MessagesActivity extends AppCompatActivity {
                 return true;
 
             case R.id.item2:
-                Toast.makeText(this, "Vibraton selected", Toast.LENGTH_SHORT).show();
-
-//                Button playVibration = this.findViewById(R.id.button);
-//                playVibration.setOnClickListener(
-////                view on click listener;
-//                        (v) -> {
-//                            EditText morseText = findViewById(R.id.morse);
-//                            String morseCode = morseText.getText().toString();
-//                            MorseVibrationPlayer player = new MorseVibrationPlayer(morseCode, this);
-//                            Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-//                            player.vibration();
-//                        });
-
+                Toast.makeText(this, "Vibration selected", Toast.LENGTH_SHORT).show();
+                choice = 2;
                 return true;
 
             case R.id.item3:
 //                both sound and vibration
                 Toast.makeText(this, "Sound and Vibration selected", Toast.LENGTH_SHORT).show();
-//
-//                Button playSoundAndVibration = this.findViewById(R.id.button);
-//                playSoundAndVibration.setOnClickListener(
-////                        view on click listener;
-//                        (v) -> {
-//                            EditText morseText = findViewById(R.id.morse);
-//                            String morseCode = morseText.getText().toString();
-//                            MorseMediaPlayer player = new MorseMediaPlayer(morseCode, this);
-//                            player.note();
-//
-//                            MorseVibrationPlayer player = new MorseVibrationPlayer(morseCode, this);
-//                            Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-//                            player.vibration();
-//                        });
+                choice = 3;
                 return true;
 
             case R.id.item4:
 //                Meant to make it so that the button will go back to doing nothing
                 Toast.makeText(this, "None selected", Toast.LENGTH_SHORT).show();
-
-//                 Button nothing = (Button) this.findViewById(R.id.play);
-//
-//                nothing.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                    }
-//                });
-
+                choice = 4;
                 return true;
 
             case R.id.item5:
-                //Toast.makeText(this, "Glossery selected", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "Glossery selected", Toast.LENGTH_SHORT).show();
 
                 // Create an Intent to start the second activity
                 Intent glossaryIntent = new Intent(this, GlossaryActivity.class);
