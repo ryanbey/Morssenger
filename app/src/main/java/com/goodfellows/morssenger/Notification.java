@@ -9,8 +9,9 @@ import android.os.Build;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
-public class Notification extends AppCompatActivity {
+public class Notification {
 
     // ID for the channel (SOS)
     private String channelID = "morssenger";
@@ -18,42 +19,42 @@ public class Notification extends AppCompatActivity {
     private int notificationID = 111000111;
 
     // Send notification, String message
-    public void sendNotification(String message, String contact){
+    public void sendNotification(String message, String contact, Context context){
 
         // First create a channel for the notification
-        createChannel();
+        createChannel(context);
 
         // Create the notification with the builder
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this,channelID);
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context,channelID);
         mBuilder.setSmallIcon(R.drawable.ic_message)
                 .setContentTitle("Message from " + contact)
                 .setContentText(message);
 
 
-        // Need to have a class to send the view to before implementing this bit
-//        Intent intent = new Intent(Notification.this, NotificationActivity.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//        intent.putExtra("message", "one message");
-//
-//        PendingIntent pendingIntent = PendingIntent.getActivity(Notification.this,
-//                0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-//        mBuilder.setContentIntent(pendingIntent);
+        //Need to have a class to send the view to before implementing this bit
+        Intent intent = new Intent(context, MessagesActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("message", "one message");
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(context,
+                0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        mBuilder.setContentIntent(pendingIntent);
 
 
-        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManagerCompat mNotificationManager = NotificationManagerCompat.from(context);
 
         // NotificationID allows you to update the notification later on.
         mNotificationManager.notify(notificationID, mBuilder.build());
 
     }
 
-    private void createChannel(){
+    private void createChannel(Context context){
         // Create the NotificationChannel with message for name
         NotificationChannel channel = new NotificationChannel(channelID, "message", NotificationManager.IMPORTANCE_HIGH);
 
         // Register the channel with the system; you can't change the importance
         // or other notification behaviors after this
-        NotificationManager notificationManager = getSystemService(NotificationManager.class);
+        NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
         notificationManager.createNotificationChannel(channel);
     }
 
