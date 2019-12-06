@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -160,6 +161,21 @@ public class MorseInputActivity extends AppCompatActivity {
 
         // Kill MorseInputActivity
         finish();
+    }
+
+    /*
+    Prevents crashing when pressing the back button
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            Intent i = new Intent();
+            String emptyMsg = "";
+            i.putExtra("MESSAGE", emptyMsg);
+            setResult(0, i);
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
 

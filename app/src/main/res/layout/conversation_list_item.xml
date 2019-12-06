@@ -4,26 +4,22 @@
     android:padding="8dp"
     android:id="@+id/parent_layout"> <!--Allows us to connect to an OnClickListener-->
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_contact_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="18dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
-        android:layout_alignParentStart="true"
         android:text="Contact Name"
         android:textColor="#000000"
         android:textSize="16sp" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_newest_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="18dp"
-        android:layout_marginBottom="8dp"
-        android:layout_below="@id/tv_contact_name"
-        android:layout_marginTop="0dp"
-        android:layout_alignParentStart="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="28dp"
         android:text="Newest Message"
         android:textColor="#000000"
         android:textSize="16sp" />
@@ -34,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/tv_contact_name"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="0dp"
+        android:layout_marginRight="16dp"
         android:text="00:00 am" />
 
 </RelativeLayout>
