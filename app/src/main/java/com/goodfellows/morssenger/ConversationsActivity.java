@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,6 +27,7 @@ public class ConversationsActivity extends AppCompatActivity {
     private Contact newContact;
     private Button logout;
     private static final String TAG = "ConversationsActivity";
+    private TextView userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,20 +37,17 @@ public class ConversationsActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: started");
 
 
-        // Get current user
+        userName = (TextView) findViewById(R.id.tv_userName);
         user = FirebaseAuth.getInstance().getCurrentUser();
-        authListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                user = firebaseAuth.getCurrentUser();
-                if (user == null) {
-                    // launch Login activity if user is NULL
-                    Intent notLoggedIn = new Intent(ConversationsActivity.this, LoginActivity.class);
-                    startActivity(notLoggedIn);
-                    finish();
-                }
-            }
-        };
+        if (user != null)
+        {
+            String email = user.getEmail();
+            userName.setText(email);
+        }
+        else
+        {
+            userName.setText("not signed in");
+        }
 
         logout = (Button) findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {
