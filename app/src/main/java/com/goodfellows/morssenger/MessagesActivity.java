@@ -61,8 +61,8 @@ public class MessagesActivity extends AppCompatActivity {
                 // whenever data at this location is updated.
                 String value = dataSnapshot.getValue(String.class);
                 Log.d(TAG, "Value is: " + value);
-                Notification notification = new Notification();
-                notification.sendNotification("","rando",getContext());
+                //Notification notification = new Notification();
+                //notification.sendNotification("","rando",getContext());
             }
 
             @Override
