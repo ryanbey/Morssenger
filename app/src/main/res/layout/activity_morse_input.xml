@@ -118,7 +118,6 @@
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:onClick="sendTranslatedMessage"
         android:text="Translated Message"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_backspace"
