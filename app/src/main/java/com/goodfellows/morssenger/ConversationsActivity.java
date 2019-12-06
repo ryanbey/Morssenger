@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,13 +21,11 @@ import java.util.ArrayList;
 public class ConversationsActivity extends AppCompatActivity {
     private FirebaseUser user;
     private FirebaseAuth.AuthStateListener authListener;
-    private static final String TAG = "ConversationsActivity";
-    private Contact newContact;
-    // Variables
     private ArrayList<String> contactNames = new ArrayList<>();
     private ArrayList<String> messages = new ArrayList<>();
+    private Contact newContact;
     private Button logout;
-    private TextView userName;
+    private static final String TAG = "ConversationsActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,17 +34,21 @@ public class ConversationsActivity extends AppCompatActivity {
         Utils.greenStatusBar(this, R.color.colorMorseGreen); // Green status bar
         Log.d(TAG, "onCreate: started");
 
-        userName = (TextView) findViewById(R.id.tv_userName);
+
+        // Get current user
         user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null)
-        {
-            String email = user.getEmail();
-            userName.setText(email);
-        }
-        else
-        {
-            userName.setText("not signed in");
-        }
+        authListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                user = firebaseAuth.getCurrentUser();
+                if (user == null) {
+                    // launch Login activity if user is NULL
+                    Intent notLoggedIn = new Intent(ConversationsActivity.this, LoginActivity.class);
+                    startActivity(notLoggedIn);
+                    finish();
+                }
+            }
+        };
 
         logout = (Button) findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +74,9 @@ public class ConversationsActivity extends AppCompatActivity {
         initListItems();
     }
 
+    /*
+    Prepares data for list items
+     */
     private void initListItems() {
         Log.d(TAG, "initImageListItems: preparing list items");
 
@@ -81,6 +85,9 @@ public class ConversationsActivity extends AppCompatActivity {
         initRecyclerView();
     }
 
+    /*
+    Creates RecyclerView using the adapter
+     */
     private void initRecyclerView() {
         Log.d(TAG, "initRecyclerView: init recyclerview");
 
@@ -91,6 +98,9 @@ public class ConversationsActivity extends AppCompatActivity {
     }
 
 
+    /*
+    Gets result from AddContactActivity
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
