@@ -47,8 +47,6 @@ public class MessagesActivity extends AppCompatActivity {
         // Change to show actual name later
         setTitle("Contact Name");
 
-        MessageBubbles = new ArrayList<>();
-
         // creates a reference on firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
@@ -72,6 +70,8 @@ public class MessagesActivity extends AppCompatActivity {
             }
         });
 
+        MessageBubbles = new ArrayList<>();
+
         ListView messagesListView = (ListView) findViewById(R.id.messages_list_view);
         View buttonSend = findViewById(R.id.btn_send_message);
         EditText et = (EditText) findViewById(R.id.et_enter_message);
@@ -81,7 +81,6 @@ public class MessagesActivity extends AppCompatActivity {
         messagesListView.setAdapter(adapter);
 
         messagesListView.setOnItemClickListener(
-
             (parent, view, position, id) ->{
             // Sound
             if (choice == 1) {
@@ -144,22 +143,34 @@ public class MessagesActivity extends AppCompatActivity {
         });
     }
 
+    /*
+    CREATES OPTIONS MENU
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.example_menu, menu);
         return true;
     }
 
+    /*
+    GETS ENGLISH MESSAGE
+     */
     public void getTranslatedMessage(String translatedMessage) {
         EditText et = findViewById(R.id.et_enter_message);
         et.setText(translatedMessage);
     }
 
+    /*
+    STARTS MORSE INPUT ACTIVITY EXPECTING RESULT
+     */
     public void displayMorseInputActivity(View view) {
             Intent i = new Intent(this, MorseInputActivity.class);
             startActivityForResult(i, 0);
     }
 
+    /*
+    ACCEPTS RESULT FROM MORSE INPUT ACTIVITY
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -167,10 +178,12 @@ public class MessagesActivity extends AppCompatActivity {
         et.setText(data.getStringExtra("MESSAGE"));
     }
 
+    /*
+    DISPLAYS TOAST ON OPTION PRESS
+     */
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
         switch (item.getItemId()) {
-            //Sound
+            // Sound
             case R.id.item1:
                 Toast.makeText(this, "Sound selected", Toast.LENGTH_SHORT).show();
                 choice = 1;
@@ -195,7 +208,6 @@ public class MessagesActivity extends AppCompatActivity {
                 Intent glossaryIntent = new Intent(this, GlossaryActivity.class);
                 startActivity(glossaryIntent);
                 return true;
-
             default:
                 return super.onOptionsItemSelected(item);
         }
