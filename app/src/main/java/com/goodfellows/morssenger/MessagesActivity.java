@@ -28,8 +28,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MessagesActivity extends AppCompatActivity {
     //private FirebaseUser user;
@@ -132,8 +136,16 @@ public class MessagesActivity extends AppCompatActivity {
                     MessageBubbles.add(messageBubble);
                     adapter.notifyDataSetChanged();
 
+                    // Gets message time
+//                    Message message = new Message();
+//                    Date currentTime = Calendar.getInstance().getTime();
+//                    Date textTime = message.setTextTime(currentTime);
+
+                    SimpleDateFormat sdf = new SimpleDateFormat("HHmm", Locale.getDefault());
+                    String textTime = sdf.format(new Date());
+
                     String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-                    FirebaseDatabase.getInstance().getReference().push().setValue(new Message(et.getText().toString(), userEmail,true));
+                    FirebaseDatabase.getInstance().getReference().push().setValue(new Message(et.getText().toString(), userEmail, textTime));
 
                     et.setText("");
 
@@ -143,7 +155,6 @@ public class MessagesActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     /*
