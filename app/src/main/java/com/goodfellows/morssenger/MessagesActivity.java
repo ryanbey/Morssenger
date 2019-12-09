@@ -20,6 +20,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,7 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MessagesActivity extends AppCompatActivity {
-
+    private FirebaseUser user;
     boolean myMessage = true;
     private List<MessageBubble> MessageBubbles;
     private ArrayAdapter<MessageBubble> adapter;
@@ -49,10 +51,10 @@ public class MessagesActivity extends AppCompatActivity {
 
         // creates a reference on firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
+        DatabaseReference Messages = database.getReference("Messages");
 
         // Read from the reference on database
-        myRef.addValueEventListener(new ValueEventListener() {
+        Messages.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
@@ -127,6 +129,11 @@ public class MessagesActivity extends AppCompatActivity {
                     MessageBubbles.add(messageBubble);
                     adapter.notifyDataSetChanged();
 
+                    //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser().toString();
+
+                    //Message message = new Message(et.getText().toString(),user ,true);
+
+                    //FirebaseDatabase.getInstance().getReference("messages/" + uid).setValue(message);
                     // Sets a new reference in firebase with a string from messages
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference myRef = database.getReference("message");
