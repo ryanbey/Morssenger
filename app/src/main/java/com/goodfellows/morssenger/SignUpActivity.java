@@ -55,26 +55,26 @@ public class SignUpActivity extends AppCompatActivity {
                 final String confirmPassword = authPassword.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Empty email", Toast.LENGTH_SHORT).show();
                     updateProgressBar(false);
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Empty password", Toast.LENGTH_SHORT).show();
                     updateProgressBar(false);
                     return;
                 }
 
                 if (password.length() < 6) {  //makes sure password is grater than 6 characters -Evans
-                    Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Password must be 6 characters long", Toast.LENGTH_SHORT).show();
                     updateProgressBar(false);
                     return;
                 }
 
                 if (!password.equals(confirmPassword)) //makes sure password matches -Evans
                 {
-                    Toast.makeText(getApplicationContext(), "Password does not match!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Passwords don't match", Toast.LENGTH_SHORT).show();
                     updateProgressBar(false);
                     return;
                 }
@@ -84,13 +84,13 @@ public class SignUpActivity extends AppCompatActivity {
                     .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            Toast.makeText(SignUpActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUpActivity.this, "Account created" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
                             // If sign in fails, display a message to the user. If sign in succeeds
                             // the auth state listener will be notified and logic to handle the
                             // signed in user can be handled in the listener.
                             if (!task.isSuccessful()) {
                                 updateProgressBar(false);
-                                Toast.makeText(SignUpActivity.this, "Authentication failed." + task.getException(),
+                                Toast.makeText(SignUpActivity.this, "Authentication failed" + task.getException(),
                                         Toast.LENGTH_SHORT).show();
                             } else {
                                 addUserTofirebase(email, password, fname, lname);
