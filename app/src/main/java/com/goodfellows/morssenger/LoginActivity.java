@@ -103,10 +103,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     // Temporary button to bypass sign in to test conversations screen
-    public void displayConversationsActivity(View view) {
-        Intent iConversations = new Intent(this, ConversationsActivity.class);
-        startActivity(iConversations);
-    }
+    //public void displayConversationsActivity(View view) {
+    //   Intent iConversations = new Intent(this, ConversationsActivity.class);
+    //    startActivity(iConversations);
+    //}
 
     public void displaySignUp(View view) {
         Intent iCreateAccount = new Intent(this, SignUpActivity.class);

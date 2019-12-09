@@ -32,12 +32,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MessagesActivity extends AppCompatActivity {
-    private FirebaseUser user;
+    //private FirebaseUser user;
     boolean myMessage = true;
     private List<MessageBubble> MessageBubbles;
     private ArrayAdapter<MessageBubble> adapter;
     private int choice;
     private String TAG = "MessagesActivity";
+
+    //test list
+   
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,16 +132,15 @@ public class MessagesActivity extends AppCompatActivity {
                     MessageBubbles.add(messageBubble);
                     adapter.notifyDataSetChanged();
 
-                    //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser().toString();
+                    String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+                    FirebaseDatabase.getInstance().getReference().push().setValue(new Message(et.getText().toString(), userEmail,true));
 
-                    //Message message = new Message(et.getText().toString(),user ,true);
 
-                    //FirebaseDatabase.getInstance().getReference("messages/" + uid).setValue(message);
                     // Sets a new reference in firebase with a string from messages
-                    FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    DatabaseReference myRef = database.getReference("message");
+                    //FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    //DatabaseReference myRef = database.getReference("message");
 
-                    myRef.setValue(et.getText().toString());
+                    //myRef.setValue(et.getText().toString());
 
                     et.setText("");
 
