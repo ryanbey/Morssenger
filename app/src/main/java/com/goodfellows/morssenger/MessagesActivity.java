@@ -42,6 +42,7 @@ public class MessagesActivity extends AppCompatActivity {
     private ArrayAdapter<MessageBubble> adapter;
     private int choice;
     private String TAG = "MessagesActivity";
+    public String textTime = "";
 
     //test list
    
@@ -142,7 +143,7 @@ public class MessagesActivity extends AppCompatActivity {
 //                    Date textTime = message.setTextTime(currentTime);
 
                     SimpleDateFormat sdf = new SimpleDateFormat("HHmm", Locale.getDefault());
-                    String textTime = sdf.format(new Date());
+                    textTime = sdf.format(new Date());
 
                     String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
                     FirebaseDatabase.getInstance().getReference().push().setValue(new Message(et.getText().toString(), userEmail, textTime));

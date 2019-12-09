@@ -17,19 +17,16 @@ public class Message {
         this.textTime = textTime;
     }
 
-    public String getText(){return text;}
+    public String getText() {return text;}
 
-    public String getTextSender(){return textSender;}
+    public String getTextSender() {return textSender;}
 
-    public String getTextTime(){return textTime;}
+    public String getTextTime() {return textTime;}
 
-    public void setText(String text){this.text = text;}
+    public void setText(String text) {this.text = text;}
 
-    public void setTextSender(String textSender){this.text = textSender;}
+    public void setTextSender(String textSender) {this.text = textSender;}
 
-    public String setTextTime(String textTime){
-        //this.textTime = textTime;
-        return textTime;
-    }
+    public String setTextTime(String textTime) {return textTime;}
 }
 

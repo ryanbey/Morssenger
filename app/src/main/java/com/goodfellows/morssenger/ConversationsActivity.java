@@ -31,6 +31,7 @@ public class ConversationsActivity extends AppCompatActivity {
     private Button logout;
     private static final String TAG = "ConversationsActivity";
     private TextView userName;
+    private TextView timestamp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,7 @@ public class ConversationsActivity extends AppCompatActivity {
             }
         });
 
+        // Floating action button
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +73,11 @@ public class ConversationsActivity extends AppCompatActivity {
                 startActivityForResult(intent, 0);
             }
         });
+
+        // Sets correct timestamp
+        Message message = new Message();
+        String textTime = message.getTextTime();
+        timestamp.setText(textTime);
 
         initListItems();
     }
