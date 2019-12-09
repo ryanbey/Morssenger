@@ -43,22 +43,16 @@ public class LoginActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         loginBtn = (Button) findViewById(R.id.button_login);
 
-        // Get current user
+        //if user is signed in, go to conversation activity
         user = FirebaseAuth.getInstance().getCurrentUser();
-        authListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-             user = firebaseAuth.getCurrentUser();
-            if (user != null) {
-                // launch conversation activity if user is logged in
-                Intent existingUser = new Intent(LoginActivity.this, ConversationsActivity.class);
-                startActivity(existingUser);
-                finish();
-            }
-            }
-        };
+        if (user != null) {
+            // launch conversation activity if user is logged in
+            Intent existingUser = new Intent(LoginActivity.this, ConversationsActivity.class);
+            startActivity(existingUser);
+            finish();
+        }
 
-        loginBtn.setOnClickListener(new View.OnClickListener() {
+            loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             updateProgressBar(true);
