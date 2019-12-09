@@ -31,6 +31,7 @@
         android:layout_alignTop="@+id/tv_contact_name"
         android:layout_alignParentEnd="true"
         android:layout_marginRight="16dp"
-        android:text="00:00 am" />
+        android:text="00:00 am"
+        android:textColor="@color/colorTextGrey" />
 
 </RelativeLayout>
