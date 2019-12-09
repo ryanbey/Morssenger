@@ -13,16 +13,16 @@
         app:showAsAction="ifRoom">
         <menu>
             <item android:id="@+id/item1"
-                android:title="Sound test" />
+                android:title="Sound" />
 
             <item android:id="@+id/item2"
-                android:title="Vibration test" />
+                android:title="Vibration" />
 
             <item android:id="@+id/item3"
-                android:title="Sound and Vibration test" />
+                android:title="Sound and Vibration" />
 
             <item android:id="@+id/item4"
-                android:title="None" />
+                android:title="Silent" />
         </menu>
     </item>
 </menu>

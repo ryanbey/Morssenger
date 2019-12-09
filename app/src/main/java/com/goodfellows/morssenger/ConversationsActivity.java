@@ -36,7 +36,6 @@ public class ConversationsActivity extends AppCompatActivity {
         Utils.greenStatusBar(this, R.color.colorMorseGreen); // Green status bar
         Log.d(TAG, "onCreate: started");
 
-
         userName = (TextView) findViewById(R.id.tv_userName);
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null)
@@ -46,7 +45,7 @@ public class ConversationsActivity extends AppCompatActivity {
         }
         else
         {
-            userName.setText("not signed in");
+            userName.setText("Not signed in");
         }
 
         logout = (Button) findViewById(R.id.logout);
@@ -79,7 +78,7 @@ public class ConversationsActivity extends AppCompatActivity {
     private void initListItems() {
         Log.d(TAG, "initImageListItems: preparing list items");
 
-        contactNames.add("test");
+        contactNames.add("Test Conversation");
 
         initRecyclerView();
     }
