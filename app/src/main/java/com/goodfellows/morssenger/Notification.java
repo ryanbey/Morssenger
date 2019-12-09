@@ -31,7 +31,8 @@ public class Notification {
                 .setContentText(message);
 
 
-        //Need to have a class to send the view to before implementing this bit
+        //creates the intent to send the user to the messagesActivity once the
+        // notification is pressed
         Intent intent = new Intent(context, MessagesActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("message", "one message");

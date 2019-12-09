@@ -135,13 +135,6 @@ public class MessagesActivity extends AppCompatActivity {
                     String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
                     FirebaseDatabase.getInstance().getReference().push().setValue(new Message(et.getText().toString(), userEmail,true));
 
-
-                    // Sets a new reference in firebase with a string from messages
-                    //FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    //DatabaseReference myRef = database.getReference("message");
-
-                    //myRef.setValue(et.getText().toString());
-
                     et.setText("");
 
                     if (myMessage) {
@@ -150,6 +143,7 @@ public class MessagesActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     /*

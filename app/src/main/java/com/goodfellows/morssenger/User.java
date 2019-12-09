@@ -1,10 +1,10 @@
 package com.goodfellows.morssenger;
 
 public class User {
-    String firstName;
-    String lastName;
-    String email;
-    String password;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String password;
 
     User(){}
 
@@ -13,10 +13,7 @@ public class User {
         return password;
     }
 
-    public void setPassword(String password)
-    {
-        this.password = password;
-    }
+
 
     public String getFirstName()
     {
@@ -32,6 +29,8 @@ public class User {
     {
         return email;
     }
+
+    public void setPassword(String password) { this.password = password; }
 
     public void setFirstName(String firstName)
     {
