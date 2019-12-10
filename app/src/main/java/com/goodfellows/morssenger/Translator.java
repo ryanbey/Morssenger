@@ -110,59 +110,59 @@ public class Translator {
     private String checkEnglish(char englishChar) {
         switch (englishChar) {
             case 'a':
-                return ".-";
+                return ".- ";
             case 'b':
-                return "-...";
+                return "-... ";
             case 'c':
-                return "-.-.";
+                return "-.-. ";
             case 'd':
-                return "-..";
+                return "-.. ";
             case 'e':
-                return ".";
+                return ". ";
             case 'f':
-                return "..-.";
+                return "..-. ";
             case 'g':
-                return "--.";
+                return "--. ";
             case 'h':
-                return "....";
+                return ".... ";
             case 'i':
-                return "..";
+                return ".. ";
             case 'j':
-                return ".---";
+                return ".--- ";
             case 'k':
-                return "-.-";
+                return "-.- ";
             case 'l':
-                return ".-..";
+                return ".-.. ";
             case 'm':
-                return "--";
+                return "-- ";
             case 'n':
-                return "-.";
+                return "-. ";
             case 'o':
-                return "---";
+                return "--- ";
             case 'p':
-                return ".--.";
+                return ".--. ";
             case 'q':
-                return "--.-";
+                return "--.- ";
             case 'r':
-                return ".-.";
+                return ".-. ";
             case 's':
-                return "...";
+                return "... ";
             case 't':
-                return "-";
+                return "- ";
             case 'u':
-                return "..-";
+                return "..- ";
             case 'v':
-                return "...-";
+                return "...- ";
             case 'w':
-                return ".--";
+                return ".-- ";
             case 'x':
-                return "-..-";
+                return "-..- ";
             case 'y':
-                return "-.--";
+                return "-.-- ";
             case 'z':
-                return "--..";
+                return "--.. ";
             case ' ':
-                return "/";
+                return "/ ";
             default:
                 throw new IllegalStateException("Unexpected value: " + englishChar);
         }
