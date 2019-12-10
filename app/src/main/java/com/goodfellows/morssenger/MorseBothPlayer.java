@@ -1,50 +1,58 @@
 package com.goodfellows.morssenger;
 
 import android.media.MediaPlayer;
+import android.os.Vibrator;
 
-public class MorseMediaPlayer {
+import static android.content.Context.VIBRATOR_SERVICE;
 
+
+public class MorseBothPlayer {
 
     private String morseCode;
     private int morsePosition;
     private MessagesActivity activity;
 
-    public MorseMediaPlayer(String morseCode, MessagesActivity activity) {
+    public MorseBothPlayer(String morseCode, MessagesActivity activity) {
         this.morseCode = morseCode;
         this.activity = activity;
     }
 
-    public void note(){
+    public void both(){
         char variables = morseCode.charAt(morsePosition);
-        MediaPlayer beepSoundMP = null;
+        MediaPlayer vibrationSoundMP = null;
+
+        Vibrator vibrator = (Vibrator) activity.getSystemService(VIBRATOR_SERVICE);
 
         if (variables == '.') {
-            beepSoundMP = MediaPlayer.create(activity, R.raw.short_beep);
-            // Short beep for a .
-            beepSoundMP.start();
+            vibrationSoundMP = MediaPlayer.create(activity, R.raw.short_beep);
+//            Short beep for a .
+            vibrationSoundMP.start();
+            vibrator.vibrate(200);
         }
 
         else if (variables == '-') {
-            beepSoundMP = MediaPlayer.create(activity, R.raw.long_beep);
-            // Long  beep for a -
-            beepSoundMP.start();
+            vibrationSoundMP = MediaPlayer.create(activity, R.raw.long_beep);
+//            long  beep for a -
+            vibrationSoundMP.start();
+            vibrator.vibrate(400);
         }
 
         else if (variables == ' ') {
-            // Make empty sound mp3 for a space
-            beepSoundMP = MediaPlayer.create(activity, R.raw.silence);
-            beepSoundMP.start();
+//            Make empty sound mp3 for a space
+            vibrationSoundMP = MediaPlayer.create(activity, R.raw.silence);
+            vibrationSoundMP.start();
+            vibrator.vibrate(0);
         }
 
         else if (variables != '.' || variables != '-' || variables != ' ') {
-            // Must increment morsePosition for '/'
-            // Set beepSoundMP to something so as to go into the onCompletion function and run the next note
-            beepSoundMP = MediaPlayer.create(activity, R.raw.silence);
-            beepSoundMP.start();
+//            must increment morsePosition for '/'
+//            set beepSoundMP to something so as to go into the onCompletinon function and run the next note
+            vibrationSoundMP = MediaPlayer.create(activity, R.raw.silence);
+            vibrationSoundMP.start();
         }
 
-        if (beepSoundMP != null) {
-            beepSoundMP.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+        if (vibrationSoundMP != null) {
+            vibrationSoundMP.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
                     if (variables == '.' || variables == '-' || variables == ' ') {
@@ -65,7 +73,7 @@ public class MorseMediaPlayer {
 
                     if (morsePosition < morseCode.length() - 1) {
                         morsePosition++;
-                        note();
+                        both();
                     }
 
                     else {

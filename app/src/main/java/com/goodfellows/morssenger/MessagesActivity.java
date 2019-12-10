@@ -104,6 +104,7 @@ public class MessagesActivity extends AppCompatActivity {
             else if (choice == 2) {
                 Translator translator = new Translator();
                 String morseCode = translator.ConvertToMorse(MessageBubbles.get(position).getContent());
+
                 MorseVibrationPlayer player = new MorseVibrationPlayer(morseCode, this);
                 Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
                 player.vibration();
@@ -113,12 +114,9 @@ public class MessagesActivity extends AppCompatActivity {
                 Translator translator = new Translator();
                 String morseCode = translator.ConvertToMorse(MessageBubbles.get(position).getContent());
 
-                MorseMediaPlayer player = new MorseMediaPlayer(morseCode, this);
-                player.note();
-
-                MorseVibrationPlayer player2 = new MorseVibrationPlayer(morseCode, this);
-                Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-                player2.vibration();
+                MorseBothPlayer player2 = new MorseBothPlayer(morseCode, this);
+                Vibrator both = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+                player2.both();
             }
             // Do nothing
             else if (choice == 4) {

@@ -27,20 +27,21 @@ public class MorseVibrationPlayer {
             vibrationSoundMP = MediaPlayer.create(activity, R.raw.silence);
 //            Short beep for a .
             vibrationSoundMP.start();
-            vibrator.vibrate(250);
+            vibrator.vibrate(200);
         }
 
         else if (variables == '-') {
             vibrationSoundMP = MediaPlayer.create(activity, R.raw.silence);
 //            long  beep for a -
             vibrationSoundMP.start();
-            vibrator.vibrate(500);
+            vibrator.vibrate(400);
         }
 
         else if (variables == ' ') {
 //            Make empty sound mp3 for a space
             vibrationSoundMP = MediaPlayer.create(activity, R.raw.silence);
             vibrationSoundMP.start();
+            vibrator.vibrate(0);
         }
 
         else if (variables != '.' || variables != '-' || variables != ' ') {
@@ -56,7 +57,7 @@ public class MorseVibrationPlayer {
                 public void onCompletion(MediaPlayer mp) {
                     if (variables == '.' || variables == '-' || variables == ' ') {
                         try {
-                            Thread.sleep(450);
+                            Thread.sleep(350);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -70,7 +71,7 @@ public class MorseVibrationPlayer {
                         }
                     }
 
-                    if (morsePosition != morseCode.length() - 1) {
+                    if (morsePosition < morseCode.length() - 1) {
                         morsePosition++;
                         vibration();
                     }
