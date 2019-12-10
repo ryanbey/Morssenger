@@ -74,10 +74,6 @@ public class ConversationsActivity extends AppCompatActivity {
             }
         });
 
-        // Sets correct timestamp
-        Message message = new Message();
-        String textTime = message.getTextTime();
-        timestamp.setText(textTime);
 
         initListItems();
     }
@@ -113,5 +109,20 @@ public class ConversationsActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         newContact.setName(data.toString());
+    }
+
+    /*
+    Sets timestamp for latest message received
+    */
+    public void setTimestamp() {
+        Message message = new Message();
+        String textTime = message.getTextTime();
+        // SET TEXT SHOULD USE FIREBASE INFORMATION
+        if (textTime != null) {
+            timestamp.setText(textTime);
+        }
+        else {
+            timestamp.setText("ERROR");
+        }
     }
 }

@@ -7,7 +7,6 @@ public class Message {
     private String text;
     private String textSender;
     private String textTime;
-    private boolean belongsToCurrentUser;
 
     public Message(){}
 

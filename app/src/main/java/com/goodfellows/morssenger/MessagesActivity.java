@@ -138,11 +138,7 @@ public class MessagesActivity extends AppCompatActivity {
                     adapter.notifyDataSetChanged();
 
                     // Gets message time
-//                    Message message = new Message();
-//                    Date currentTime = Calendar.getInstance().getTime();
-//                    Date textTime = message.setTextTime(currentTime);
-
-                    SimpleDateFormat sdf = new SimpleDateFormat("HHmm", Locale.getDefault());
+                    SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a", Locale.getDefault());
                     textTime = sdf.format(new Date());
 
                     String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
