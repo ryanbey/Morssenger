@@ -71,7 +71,7 @@ public class MorseVibrationPlayer {
                         }
                     }
 
-                    if (morsePosition != morseCode.length() - 1) {
+                    if (morsePosition < morseCode.length() - 1) {
                         morsePosition++;
                         vibration();
                     }
