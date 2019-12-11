@@ -30,16 +30,9 @@ public class AddContactActivity extends AppCompatActivity {
         newContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                // creates an intent and adds the new contact
                 Intent intent = new Intent();
-                // Converts to string
-                sContactName = contactName.getText().toString();
-                intent.putExtra("CONTACT", sContactName);
-
-                // sets the result and sends it back
+                intent.putExtra("CONTACT", contactName.getText().toString());
                 setResult(0, intent);
-
                 finish();
             }
         });
