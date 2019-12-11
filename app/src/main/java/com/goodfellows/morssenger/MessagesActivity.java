@@ -114,9 +114,9 @@ public class MessagesActivity extends AppCompatActivity {
                 Translator translator = new Translator();
                 String morseCode = translator.ConvertToMorse(MessageBubbles.get(position).getContent());
 
-                MorseBothPlayer player2 = new MorseBothPlayer(morseCode, this);
+                MorseBothPlayer player = new MorseBothPlayer(morseCode, this);
                 Vibrator both = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-                player2.both();
+                player.both();
             }
             // Do nothing
             else if (choice == 4) {
