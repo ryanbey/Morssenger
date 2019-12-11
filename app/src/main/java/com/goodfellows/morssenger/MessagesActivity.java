@@ -14,14 +14,17 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,6 +46,7 @@ public class MessagesActivity extends AppCompatActivity {
     private int choice;
     private String TAG = "MessagesActivity";
     public String textTime = "";
+    private FirebaseListAdapter<Message> messageAdapter;
 
     //test list
    
@@ -51,34 +55,11 @@ public class MessagesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages);
-
         // Layout Stuff
         Utils.greenStatusBar(this, R.color.colorMorseGreen);
+
         // Change to show actual name later
         setTitle("Contact Name");
-
-        // creates a reference on firebase
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference Messages = database.getReference("Messages");
-
-        // Read from the reference on database
-        Messages.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.d(TAG, "Value is: " + value);
-                //Notification notification = new Notification();
-                //notification.sendNotification("","rando",getContext());
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
 
         MessageBubbles = new ArrayList<>();
 
@@ -89,6 +70,63 @@ public class MessagesActivity extends AppCompatActivity {
         // Set ListView adapter
         adapter = new MessageAdapter(this, R.layout.their_message, MessageBubbles);
         messagesListView.setAdapter(adapter);
+
+
+        // creates a reference on firebase
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference Messages = database.getReferenceFromUrl("https://morssenger-158ad.firebaseio.com/");
+
+            ChildEventListener childEventListener = new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                   Log.d("FireBase", dataSnapshot.getKey());
+                   Message newMessage = dataSnapshot.getValue(Message.class);
+                   Log.d("FireBaseText", "text=" + newMessage.getText());
+                    MessageBubble messageBubble = new MessageBubble(newMessage.getText(), false);
+                    MessageBubbles.add(messageBubble);
+                    adapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            };
+            Messages.addChildEventListener(childEventListener);
+
+        // Read from the reference on database
+//        Messages.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                // This method is called once with the initial value and again
+//                // whenever data at this location is updated.
+//                String value = dataSnapshot.getValue(String.class);
+//                Log.d(TAG, "Value is: " + value);
+//                //Notification notification = new Notification();
+//                //notification.sendNotification("","rando",getContext());
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError error) {
+//                // Failed to read value
+//                Log.w(TAG, "Failed to read value.", error.toException());
+//            }
+//        });
 
         messagesListView.setOnItemClickListener(
             (parent, view, position, id) ->{
@@ -131,9 +169,9 @@ public class MessagesActivity extends AppCompatActivity {
                     Toast.makeText(MessagesActivity.this, "Input some text!", Toast.LENGTH_SHORT).show();
                 } else {
                     // Add message to list
-                    MessageBubble messageBubble = new MessageBubble(et.getText().toString(), myMessage);
-                    MessageBubbles.add(messageBubble);
-                    adapter.notifyDataSetChanged();
+                    //MessageBubble messageBubble = new MessageBubble(et.getText().toString(), myMessage);
+                   // MessageBubbles.add(messageBubble);
+                    //adapter.notifyDataSetChanged();
 
                     // Gets message time
                     SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a", Locale.getDefault());
@@ -225,4 +263,21 @@ public class MessagesActivity extends AppCompatActivity {
     Context getContext(){
         return this;
     }
+
+//    public void displayMessages()
+//    {
+//       // ListView listMessages = (ListView) findViewById(R.id.messages_list_view);
+//        messageAdapter = new FirebaseListAdapter<Message>(this, Message.class, R.layout.their_message, FirebaseDatabase.getInstance().getReference()) {
+//            @Override
+//            protected void populateView(View v, Message model, int position) {
+//                //TextView message = (TextView) findViewById(R.id.message_body);
+//                //message.setText(model.getText());
+//                MessageBubble messageBubble = new MessageBubble(model.getText(), myMessage);
+//                MessageBubbles.add(messageBubble);
+//                adapter.notifyDataSetChanged();
+//            }
+//        };
+//        messageAdapter.notifyDataSetChanged();
+//       // listMessages.setAdapter(messageAdapter);
+    //}
 }
