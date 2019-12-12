@@ -18,9 +18,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ConversationsActivity extends AppCompatActivity {
     private FirebaseUser user;
@@ -32,6 +34,7 @@ public class ConversationsActivity extends AppCompatActivity {
     private static final String TAG = "ConversationsActivity";
     private TextView userName;
     private TextView timestamp;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,9 +87,19 @@ public class ConversationsActivity extends AppCompatActivity {
     private void initListItems() {
         Log.d(TAG, "initImageListItems: preparing list items");
 
-        contactNames.add("Test Conversation");
+        // First line
+        contactNames.add("All Chat");
+
+        // Second line
+        messages.add(getMostRecentMessage());
 
         initRecyclerView();
+    }
+
+    private String getMostRecentMessage() {
+        String mostRecentMessage = "";
+
+        return mostRecentMessage;
     }
 
     /*

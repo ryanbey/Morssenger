@@ -4,17 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,17 +20,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -41,15 +35,12 @@ import java.util.Locale;
 public class MessagesActivity extends AppCompatActivity {
     //private FirebaseUser user;
     boolean myMessage = true;
-    private List<MessageBubble> MessageBubbles;
+    public List<MessageBubble> messageBubbles;
     private ArrayAdapter<MessageBubble> adapter;
     private int choice;
     private String TAG = "MessagesActivity";
     public String textTime = "";
     private FirebaseListAdapter<Message> messageAdapter;
-
-    //test list
-   
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,18 +50,17 @@ public class MessagesActivity extends AppCompatActivity {
         Utils.greenStatusBar(this, R.color.colorMorseGreen);
 
         // Change to show actual name later
-        setTitle("Contact Name");
+        setTitle("All Chat");
 
-        MessageBubbles = new ArrayList<>();
+        messageBubbles = new ArrayList<>();
 
-        ListView messagesListView = (ListView) findViewById(R.id.messages_list_view);
+        ListView messagesListView = findViewById(R.id.messages_list_view);
         View buttonSend = findViewById(R.id.btn_send_message);
-        EditText et = (EditText) findViewById(R.id.et_enter_message);
+        EditText et = findViewById(R.id.et_enter_message);
 
         // Set ListView adapter
-        adapter = new MessageAdapter(this, R.layout.their_message, MessageBubbles);
+        adapter = new MessageAdapter(this, R.layout.their_message, messageBubbles);
         messagesListView.setAdapter(adapter);
-
 
         // creates a reference on firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -97,8 +87,8 @@ public class MessagesActivity extends AppCompatActivity {
                             Notification notification = new Notification();
                             notification.sendNotification(getContext());
                         }
-                        MessageBubble messageBubble = new MessageBubble(newMessage.getText(), myMessage);
-                        MessageBubbles.add(messageBubble);
+                        MessageBubble messageBubble = new MessageBubble(newMessage.getText(), newMessage.getTextSender(), myMessage);
+                        messageBubbles.add(messageBubble);
                         adapter.notifyDataSetChanged();
                     }
                 }
@@ -131,7 +121,7 @@ public class MessagesActivity extends AppCompatActivity {
             // Sound
             if (choice == 1) {
                 Translator translator = new Translator();
-                String morseCode = translator.ConvertToMorse(MessageBubbles.get(position).getContent());
+                String morseCode = translator.ConvertToMorse(messageBubbles.get(position).getContent());
                 // Need to convert message into a string then give it to the program.
                 MorseMediaPlayer player = new MorseMediaPlayer(morseCode,this);
                 player.note();
@@ -139,7 +129,7 @@ public class MessagesActivity extends AppCompatActivity {
             // Vibration
             else if (choice == 2) {
                 Translator translator = new Translator();
-                String morseCode = translator.ConvertToMorse(MessageBubbles.get(position).getContent());
+                String morseCode = translator.ConvertToMorse(messageBubbles.get(position).getContent());
 
                 MorseVibrationPlayer player = new MorseVibrationPlayer(morseCode, this);
                 Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
@@ -148,7 +138,7 @@ public class MessagesActivity extends AppCompatActivity {
             // Sound and vibration
             else if (choice == 3) {
                 Translator translator = new Translator();
-                String morseCode = translator.ConvertToMorse(MessageBubbles.get(position).getContent());
+                String morseCode = translator.ConvertToMorse(messageBubbles.get(position).getContent());
 
                 MorseBothPlayer player = new MorseBothPlayer(morseCode, this);
                 Vibrator both = (Vibrator) getSystemService(VIBRATOR_SERVICE);
@@ -168,7 +158,7 @@ public class MessagesActivity extends AppCompatActivity {
                 } else {
                     // Add message to list
                     //MessageBubble messageBubble = new MessageBubble(et.getText().toString(), myMessage);
-                   // MessageBubbles.add(messageBubble);
+                   // messageBubbles.add(messageBubble);
                     //adapter.notifyDataSetChanged();
 
                     // Gets message time
@@ -261,21 +251,4 @@ public class MessagesActivity extends AppCompatActivity {
     Context getContext(){
         return this;
     }
-
-//    public void displayMessages()
-//    {
-//       // ListView listMessages = (ListView) findViewById(R.id.messages_list_view);
-//        messageAdapter = new FirebaseListAdapter<Message>(this, Message.class, R.layout.their_message, FirebaseDatabase.getInstance().getReference()) {
-//            @Override
-//            protected void populateView(View v, Message model, int position) {
-//                //TextView message = (TextView) findViewById(R.id.message_body);
-//                //message.setText(model.getText());
-//                MessageBubble messageBubble = new MessageBubble(model.getText(), myMessage);
-//                MessageBubbles.add(messageBubble);
-//                adapter.notifyDataSetChanged();
-//            }
-//        };
-//        messageAdapter.notifyDataSetChanged();
-//       // listMessages.setAdapter(messageAdapter);
-    //}
 }
