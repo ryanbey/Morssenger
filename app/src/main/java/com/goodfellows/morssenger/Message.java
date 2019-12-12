@@ -24,7 +24,7 @@ public class Message {
 
     public void setText(String text) {this.text = text;}
 
-    public void setTextSender(String textSender) {this.text = textSender;}
+    public void setTextSender(String textSender) {this.textSender = textSender;}
 
     public String setTextTime(String textTime) {return textTime;}
 }

@@ -79,14 +79,28 @@ public class MessagesActivity extends AppCompatActivity {
             ChildEventListener childEventListener = new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                   Log.d("FireBase", dataSnapshot.getKey());
-                   Message newMessage = dataSnapshot.getValue(Message.class);
-                   Log.d("FireBaseText", "text=" + newMessage.getText());
-                   MessageBubble messageBubble = new MessageBubble(newMessage.getText(), false);
-                   MessageBubbles.add(messageBubble);
-                   adapter.notifyDataSetChanged();
-                   Notification notification = new Notification();
-                   notification.sendNotification(getContext());
+                    Log.d("FireBase", dataSnapshot.getKey());
+                    Message newMessage = dataSnapshot.getValue(Message.class);
+                    Log.d("FireBaseText", "text=" + newMessage.getText());
+                    Log.d("checkTime", "time= " + newMessage.getTextTime());
+                    if (newMessage.getTextSender() != null) {
+                        Log.d("checkEmailOne", "emailOne= " + newMessage.getTextSender().toLowerCase().trim());
+                        Log.d("checkEmailTwo", "emailTwo= " + FirebaseAuth.getInstance().getCurrentUser().getEmail().toLowerCase().trim());
+                        if (newMessage.getTextSender().toLowerCase().trim().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail().toLowerCase().trim()))
+                        {
+                            myMessage = true;
+                            Log.d("imDone", "itsTrue?= " + myMessage);
+                        }
+                        else
+                        {
+                            myMessage = false;
+                            Notification notification = new Notification();
+                            notification.sendNotification(getContext());
+                        }
+                        MessageBubble messageBubble = new MessageBubble(newMessage.getText(), myMessage);
+                        MessageBubbles.add(messageBubble);
+                        adapter.notifyDataSetChanged();
+                    }
                 }
 
                 @Override
