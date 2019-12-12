@@ -3,7 +3,7 @@ package com.goodfellows.morssenger;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Message {
+public class    Message {
     private String text;
     private String textSender;
     private String textTime;

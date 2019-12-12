@@ -169,10 +169,6 @@ public class MessagesActivity extends AppCompatActivity {
                     FirebaseDatabase.getInstance().getReference().push().setValue(new Message(et.getText().toString(), userEmail, textTime));
 
                     et.setText("");
-
-                    if (myMessage) {
-                        myMessage = true;
-                    }
                 }
             }
         });
