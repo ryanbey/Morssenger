@@ -45,6 +45,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return holder;
     }
 
+    // Handles different views with their descriptions
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+        TextView contactName;
+        TextView newestMessage;
+        RelativeLayout parentLayout;
+
+        public ViewHolder(@NonNull View view) {
+            super(view);
+            contactName = view.findViewById(R.id.tv_contact_name);
+            newestMessage = view.findViewById(R.id.tv_newest_message);
+            parentLayout = view.findViewById(R.id.parent_layout);
+
+        }
+    }
 
     // Handles populating recycler view and handles onClicks
     @Override
@@ -54,6 +69,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         // Populates the top line in the recycler view
         holder.contactName.setText(contactNames.get(position));
+        holder.newestMessage.setText(newestMessage.get(position));
 
         // Starts messages activity
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
@@ -74,20 +90,5 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public int getItemCount() {
         return contactNames.size();
-    }
-
-
-    // Handles different views with their descriptions
-    public class ViewHolder extends RecyclerView.ViewHolder {
-
-        TextView contactName;
-        RelativeLayout parentLayout;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            contactName = itemView.findViewById(R.id.tv_contact_name);
-            parentLayout = itemView.findViewById(R.id.parent_layout);
-
-        }
     }
 }
