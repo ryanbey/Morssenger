@@ -12,12 +12,16 @@ import java.util.List;
 public class MessageAdapter extends ArrayAdapter<MessageBubble> {
 
     private Activity activity;
-    private List<MessageBubble> messages;
+    public List<MessageBubble> messages;
 
-    public MessageAdapter(Activity context, int resource, List<MessageBubble> objects) {
-        super(context, resource, objects);
+    public MessageAdapter(Activity context, int resource, List<MessageBubble> messages) {
+        super(context, resource, messages);
         this.activity = context;
-        this.messages = objects;
+        this.messages = messages;
+    }
+
+    public List getMessageList() {
+        return messages;
     }
 
     @Override
@@ -50,8 +54,20 @@ public class MessageAdapter extends ArrayAdapter<MessageBubble> {
 
         // Set message content
         holder.message.setText(messageBubble.getContent());
+        // Set sender email
+        holder.sender.setText(messageBubble.getEmail());
 
         return convertView;
+    }
+
+    private class ViewHolder {
+        private TextView message;
+        private TextView sender;
+
+        public ViewHolder(View view) {
+            message = view.findViewById(R.id.message_body);
+            sender = view.findViewById(R.id.message_sender);
+        }
     }
 
     @Override
@@ -65,12 +81,5 @@ public class MessageAdapter extends ArrayAdapter<MessageBubble> {
     public int getItemViewType(int position) {
         // return a value between 0 and (getViewTypeCount - 1)
         return position % 2;
-    }
-
-    private class ViewHolder {
-        private TextView message;
-        public ViewHolder(View v) {
-            message = (TextView) v.findViewById(R.id.message_body);
-        }
     }
 }
