@@ -49,7 +49,7 @@ public class MorseMediaPlayer {
                 public void onCompletion(MediaPlayer mp) {
                     if (variables == '.' || variables == '-' || variables == ' ') {
                         try {
-                            Thread.sleep(350);
+                            Thread.sleep(250);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
