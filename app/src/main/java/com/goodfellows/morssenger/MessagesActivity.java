@@ -86,7 +86,7 @@ public class MessagesActivity extends AppCompatActivity {
                    MessageBubbles.add(messageBubble);
                    adapter.notifyDataSetChanged();
                    Notification notification = new Notification();
-                   notification.sendNotification(newMessage.getText(), newMessage.getTextSender(), getContext());
+                   notification.sendNotification(getContext());
                 }
 
                 @Override
