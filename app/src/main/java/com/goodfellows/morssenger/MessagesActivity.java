@@ -82,9 +82,11 @@ public class MessagesActivity extends AppCompatActivity {
                    Log.d("FireBase", dataSnapshot.getKey());
                    Message newMessage = dataSnapshot.getValue(Message.class);
                    Log.d("FireBaseText", "text=" + newMessage.getText());
-                    MessageBubble messageBubble = new MessageBubble(newMessage.getText(), false);
-                    MessageBubbles.add(messageBubble);
-                    adapter.notifyDataSetChanged();
+                   MessageBubble messageBubble = new MessageBubble(newMessage.getText(), false);
+                   MessageBubbles.add(messageBubble);
+                   adapter.notifyDataSetChanged();
+                   Notification notification = new Notification();
+                   notification.sendNotification(newMessage.getText(), newMessage.getTextSender(), getContext());
                 }
 
                 @Override
