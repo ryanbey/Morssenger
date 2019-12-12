@@ -97,7 +97,7 @@ public class MessagesActivity extends AppCompatActivity {
                             Notification notification = new Notification();
                             notification.sendNotification(getContext());
                         }
-                        MessageBubble messageBubble = new MessageBubble(newMessage.getText(), myMessage);
+                        MessageBubble messageBubble = new MessageBubble(newMessage.getText(), newMessage.getTextSender(), myMessage);
                         MessageBubbles.add(messageBubble);
                         adapter.notifyDataSetChanged();
                     }

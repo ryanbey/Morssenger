@@ -69,7 +69,6 @@ public class MessageAdapter extends ArrayAdapter<MessageBubble> {
 
     private class ViewHolder {
         private TextView message;
-
         public ViewHolder(View v) {
             message = (TextView) v.findViewById(R.id.message_body);
         }
