@@ -28,7 +28,7 @@ public class Notification {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context,channelID);
         mBuilder.setSmallIcon(R.drawable.ic_message)
                 .setContentTitle("Morssenger Message")
-                .setContentText("Your received a message");
+                .setContentText("You received a message");
 
 
         //creates the intent to send the user to the messagesActivity once the
