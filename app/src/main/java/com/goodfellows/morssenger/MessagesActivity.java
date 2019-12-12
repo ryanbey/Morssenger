@@ -79,12 +79,28 @@ public class MessagesActivity extends AppCompatActivity {
             ChildEventListener childEventListener = new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                   Log.d("FireBase", dataSnapshot.getKey());
-                   Message newMessage = dataSnapshot.getValue(Message.class);
-                   Log.d("FireBaseText", "text=" + newMessage.getText());
-                    MessageBubble messageBubble = new MessageBubble(newMessage.getText(), false);
-                    MessageBubbles.add(messageBubble);
-                    adapter.notifyDataSetChanged();
+                    Log.d("FireBase", dataSnapshot.getKey());
+                    Message newMessage = dataSnapshot.getValue(Message.class);
+                    Log.d("FireBaseText", "text=" + newMessage.getText());
+                    Log.d("checkTime", "time= " + newMessage.getTextTime());
+                    if (newMessage.getTextSender() != null) {
+                        Log.d("checkEmailOne", "emailOne= " + newMessage.getTextSender().toLowerCase().trim());
+                        Log.d("checkEmailTwo", "emailTwo= " + FirebaseAuth.getInstance().getCurrentUser().getEmail().toLowerCase().trim());
+                        if (newMessage.getTextSender().toLowerCase().trim().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail().toLowerCase().trim()))
+                        {
+                            myMessage = true;
+                            Log.d("imDone", "itsTrue?= " + myMessage);
+                        }
+                        else
+                        {
+                            myMessage = false;
+                            Notification notification = new Notification();
+                            notification.sendNotification(getContext());
+                        }
+                        MessageBubble messageBubble = new MessageBubble(newMessage.getText(), myMessage);
+                        MessageBubbles.add(messageBubble);
+                        adapter.notifyDataSetChanged();
+                    }
                 }
 
                 @Override
@@ -109,24 +125,6 @@ public class MessagesActivity extends AppCompatActivity {
             };
             Messages.addChildEventListener(childEventListener);
 
-        // Read from the reference on database
-//        Messages.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // This method is called once with the initial value and again
-//                // whenever data at this location is updated.
-//                String value = dataSnapshot.getValue(String.class);
-//                Log.d(TAG, "Value is: " + value);
-//                //Notification notification = new Notification();
-//                //notification.sendNotification("","rando",getContext());
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError error) {
-//                // Failed to read value
-//                Log.w(TAG, "Failed to read value.", error.toException());
-//            }
-//        });
 
         messagesListView.setOnItemClickListener(
             (parent, view, position, id) ->{

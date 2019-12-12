@@ -19,7 +19,7 @@ public class Notification {
     private int notificationID = 111000111;
 
     // Send notification, String message
-    public void sendNotification(String message, String contact, Context context){
+    public void sendNotification(Context context){
 
         // First create a channel for the notification
         createChannel(context);
@@ -27,8 +27,8 @@ public class Notification {
         // Create the notification with the builder
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context,channelID);
         mBuilder.setSmallIcon(R.drawable.ic_message)
-                .setContentTitle("Message from " + contact)
-                .setContentText(message);
+                .setContentTitle("Morssenger Message")
+                .setContentText("Your received a message");
 
 
         //creates the intent to send the user to the messagesActivity once the
