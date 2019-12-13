@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity {
-    private FirebaseAuth auth; //creates fire base Authentication object -Evans
+    private FirebaseAuth auth; //creates fire base Authentication object
     private Button buttonSignUp;
     private EditText nEmail, nPassword, nFirstName, nLastName, authPassword;
 
@@ -30,9 +30,11 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         getSupportActionBar().hide();
 
+
         // Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
         updateProgressBar(false);
+
 
         // Set button/editText to respective IDs
         buttonSignUp = findViewById(R.id.button_sign_up3);
@@ -43,6 +45,7 @@ public class SignUpActivity extends AppCompatActivity {
         nLastName = findViewById(R.id.et_last_name);
 
 
+        //when user inputs their data, buttonSignUp uses the input to create a new user when clicked
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,6 +57,7 @@ public class SignUpActivity extends AppCompatActivity {
                 final String lname = nLastName.getText().toString().trim();
                 final String confirmPassword = authPassword.getText().toString().trim();
 
+                //Error handling
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(), "Empty email", Toast.LENGTH_SHORT).show();
                     updateProgressBar(false);
@@ -103,6 +107,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
+
     // Sends new user information to firebase
     private void addUserTofirebase(String email, String password, String fname, String lname){
 
@@ -123,6 +128,8 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
+
+    //ProgressBar circle
     private void updateProgressBar(boolean isOn) {
 
         ProgressBar pb = findViewById(R.id.progressBar);

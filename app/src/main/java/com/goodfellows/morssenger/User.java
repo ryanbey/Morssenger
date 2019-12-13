@@ -1,19 +1,22 @@
 package com.goodfellows.morssenger;
 
 public class User {
+    //Private member variables
     private String firstName;
     private String lastName;
     private String email;
     private String password;
 
+
+    //Default Constructor
     User(){}
 
+
+    //Getters
     public String getPassword()
     {
         return password;
     }
-
-
 
     public String getFirstName()
     {
@@ -30,6 +33,8 @@ public class User {
         return email;
     }
 
+
+    //setters
     public void setPassword(String password) { this.password = password; }
 
     public void setFirstName(String firstName)
