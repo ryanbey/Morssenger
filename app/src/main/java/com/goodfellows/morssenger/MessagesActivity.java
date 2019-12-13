@@ -155,22 +155,33 @@ public class MessagesActivity extends AppCompatActivity {
             }
         });
 
-        // Send button
-        buttonSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (et.getText().toString().trim().equals("")) {
-                    Toast.makeText(MessagesActivity.this, "Input some text!", Toast.LENGTH_SHORT).show();
-                } else {
-                    SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a", Locale.getDefault());
-                    textTime = sdf.format(new Date());
-                    String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-                    FirebaseDatabase.getInstance().getReference().push().setValue(new Message(et.getText().toString(), userEmail, textTime));
+    }
 
-                    et.setText("");
-                }
-            }
-        });
+    /*
+    send button
+     */
+    public void sendMessage(View view){
+
+        // links message input to et
+        EditText et = findViewById(R.id.et_enter_message);
+
+        // error checking to make sure there is something to send in the first place
+        if (et.getText().toString().trim().equals("")) {
+            Toast.makeText(MessagesActivity.this, "Input some text!", Toast.LENGTH_SHORT).show();
+        } else {
+
+            // Gets message time
+            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a", Locale.getDefault());
+            textTime = sdf.format(new Date());
+
+            // puts the message into firebase with message, sender email, and time
+            String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+            FirebaseDatabase.getInstance().getReference().push().setValue(new Message(et.getText().toString(), userEmail, textTime));
+
+            // sets the edit text back to null
+            et.setText("");
+        }
+
     }
 
     /*
