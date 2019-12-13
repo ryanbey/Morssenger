@@ -73,14 +73,20 @@ public class MessagesActivity extends AppCompatActivity {
                     Message newMessage = dataSnapshot.getValue(Message.class);
                     Log.d("FireBaseText", "text=" + newMessage.getText());
                     Log.d("checkTime", "time= " + newMessage.getTextTime());
+
+
                     if (newMessage.getTextSender() != null) {
                         Log.d("checkEmailOne", "emailOne= " + newMessage.getTextSender().toLowerCase().trim());
                         Log.d("checkEmailTwo", "emailTwo= " + FirebaseAuth.getInstance().getCurrentUser().getEmail().toLowerCase().trim());
-                        if (newMessage.getTextSender().toLowerCase().trim().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail().toLowerCase().trim()))
+
+
+                        if (newMessage.getTextSender().toLowerCase().trim().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail().toLowerCase().trim()) == true)
                         {
                             myMessage = true;
                             Log.d("imDone", "itsTrue?= " + myMessage);
                         }
+
+
                         else
                         {
                             myMessage = false;
@@ -156,15 +162,8 @@ public class MessagesActivity extends AppCompatActivity {
                 if (et.getText().toString().trim().equals("")) {
                     Toast.makeText(MessagesActivity.this, "Input some text!", Toast.LENGTH_SHORT).show();
                 } else {
-                    // Add message to list
-                    //MessageBubble messageBubble = new MessageBubble(et.getText().toString(), myMessage);
-                   // messageBubbles.add(messageBubble);
-                    //adapter.notifyDataSetChanged();
-
-                    // Gets message time
                     SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a", Locale.getDefault());
                     textTime = sdf.format(new Date());
-
                     String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
                     FirebaseDatabase.getInstance().getReference().push().setValue(new Message(et.getText().toString(), userEmail, textTime));
 
@@ -247,4 +246,11 @@ public class MessagesActivity extends AppCompatActivity {
     Context getContext(){
         return this;
     }
+
+    public boolean fromCurrentUser()
+    {
+        return true;
+    }
+
+
 }
