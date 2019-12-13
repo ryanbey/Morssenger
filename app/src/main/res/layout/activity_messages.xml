@@ -11,11 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/btn_morse_input"
-        android:transcriptMode="alwaysScroll"
-        app:layout_constraintBottom_toTopOf="@id/btn_morse_input"
         android:layout_marginBottom="8dp"
         android:divider="@null"
-        />
+        android:transcriptMode="alwaysScroll"
+        app:layout_constraintBottom_toTopOf="@id/btn_morse_input" />
 
     <EditText
         android:id="@+id/et_enter_message"
@@ -27,6 +26,8 @@
         android:hint="Enter Message"
         android:inputType="textCapSentences"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_send_message"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn_morse_input" />
 
     <ImageView
@@ -45,11 +46,12 @@
         android:id="@+id/btn_send_message"
         android:layout_width="42dp"
         android:layout_height="42dp"
-        android:layout_marginStart="33dp"
+        android:layout_marginBottom="4dp"
         android:background="@drawable/button_send"
         android:onClick="sendMessage"
         app:layout_constraintBottom_toBottomOf="@+id/et_enter_message"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/et_enter_message" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
