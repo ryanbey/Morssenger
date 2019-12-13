@@ -71,9 +71,8 @@ public class ConversationsActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Open new message activity
-                Intent intent = new Intent(ConversationsActivity.this, AddContactActivity.class);
-                startActivityForResult(intent, 0);
+                // Open new message activity make a toast
+
             }
         });
 
@@ -114,15 +113,6 @@ public class ConversationsActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-
-    /*
-    Gets result from AddContactActivity
-     */
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        newContact.setName(data.toString());
-    }
 
     /*
     Sets timestamp for latest message received

@@ -4,11 +4,11 @@ public class MessageBubble {
 
     private String content;
     private String email;
-    private boolean isMyMessage;
+    private boolean myMessage;
 
     public MessageBubble(String content, String email, boolean myMessage) {
         this.content = content;
-        this.isMyMessage = myMessage;
+        this.myMessage = myMessage;
         this.email = email;
     }
 
@@ -17,8 +17,10 @@ public class MessageBubble {
     }
 
     public boolean myMessage() {
-        return isMyMessage;
+        return myMessage;
     }
 
-    public String getEmail() {return email;}
+    public String getEmail() {
+        return email;
+    }
 }

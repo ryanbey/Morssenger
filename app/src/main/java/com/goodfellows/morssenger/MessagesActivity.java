@@ -33,19 +33,18 @@ import java.util.List;
 import java.util.Locale;
 
 public class MessagesActivity extends AppCompatActivity {
-    //private FirebaseUser user;
+
     boolean myMessage = true;
     public List<MessageBubble> messageBubbles;
     private ArrayAdapter<MessageBubble> adapter;
     private int choice;
-    private String TAG = "MessagesActivity";
     public String textTime = "";
-    private FirebaseListAdapter<Message> messageAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages);
+
         // Layout Stuff
         Utils.greenStatusBar(this, R.color.colorMorseGreen);
 
@@ -64,57 +63,58 @@ public class MessagesActivity extends AppCompatActivity {
 
         // creates a reference on firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference Messages = database.getReferenceFromUrl("https://morssenger-158ad.firebaseio.com/");
+        DatabaseReference messages = database.getReferenceFromUrl("https://morssenger-158ad.firebaseio.com/");
 
-            ChildEventListener childEventListener = new ChildEventListener() {
-                @Override
-                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    Log.d("FireBase", dataSnapshot.getKey());
-                    Message newMessage = dataSnapshot.getValue(Message.class);
-                    Log.d("FireBaseText", "text=" + newMessage.getText());
-                    Log.d("checkTime", "time= " + newMessage.getTextTime());
-                    if (newMessage.getTextSender() != null) {
-                        Log.d("checkEmailOne", "emailOne= " + newMessage.getTextSender().toLowerCase().trim());
-                        Log.d("checkEmailTwo", "emailTwo= " + FirebaseAuth.getInstance().getCurrentUser().getEmail().toLowerCase().trim());
-                        if (newMessage.getTextSender().toLowerCase().trim().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail().toLowerCase().trim()))
-                        {
-                            myMessage = true;
-                            Log.d("imDone", "itsTrue?= " + myMessage);
-                        }
-                        else
-                        {
-                            myMessage = false;
-                            Notification notification = new Notification();
-                            notification.sendNotification(getContext());
-                        }
-                        MessageBubble messageBubble = new MessageBubble(newMessage.getText(), newMessage.getTextSender(), myMessage);
-                        messageBubbles.add(messageBubble);
-                        adapter.notifyDataSetChanged();
+        ChildEventListener childEventListener = new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Log.d("FireBase", dataSnapshot.getKey());
+                Message newMessage = dataSnapshot.getValue(Message.class);
+                Log.d("FireBaseText", "text=" + newMessage.getText());
+                Log.d("checkTime", "time= " + newMessage.getTextTime());
+
+                if (newMessage.getTextSender() != null) {
+                    Log.d("checkEmailOne", "emailOne= " + newMessage.getTextSender().toLowerCase().trim());
+                    Log.d("checkEmailTwo", "emailTwo= " + FirebaseAuth.getInstance().getCurrentUser().getEmail().toLowerCase().trim());
+
+                    if (newMessage.getTextSender().toLowerCase().trim().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail().toLowerCase().trim()) == true)
+                    {
+                        myMessage = true;
                     }
+                    else
+                    {
+                        myMessage = false;
+                        Notification notification = new Notification();
+                        notification.sendNotification(getContext());
+                    }
+
+                    MessageBubble messageBubble = new MessageBubble(newMessage.getText(), newMessage.getTextSender(), myMessage);
+                    messageBubbles.add(messageBubble);
+                    adapter.notifyDataSetChanged();
                 }
+            }
 
-                @Override
-                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-                }
+            }
 
-                @Override
-                public void onChildRemoved(DataSnapshot dataSnapshot) {
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
 
-                }
+            }
 
-                @Override
-                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
-                }
+            }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-                }
-            };
-            Messages.addChildEventListener(childEventListener);
-
+            }
+        };
+        messages.addChildEventListener(childEventListener);
 
         messagesListView.setOnItemClickListener(
             (parent, view, position, id) ->{
@@ -149,29 +149,33 @@ public class MessagesActivity extends AppCompatActivity {
             }
         });
 
-        // Send button
-        buttonSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (et.getText().toString().trim().equals("")) {
-                    Toast.makeText(MessagesActivity.this, "Input some text!", Toast.LENGTH_SHORT).show();
-                } else {
-                    // Add message to list
-                    //MessageBubble messageBubble = new MessageBubble(et.getText().toString(), myMessage);
-                   // messageBubbles.add(messageBubble);
-                    //adapter.notifyDataSetChanged();
+    }
 
-                    // Gets message time
-                    SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a", Locale.getDefault());
-                    textTime = sdf.format(new Date());
+    /*
+    send button
+     */
+    public void sendMessage(View view){
 
-                    String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-                    FirebaseDatabase.getInstance().getReference().push().setValue(new Message(et.getText().toString(), userEmail, textTime));
+        // links message input to et
+        EditText et = findViewById(R.id.et_enter_message);
 
-                    et.setText("");
-                }
-            }
-        });
+        // error checking to make sure there is something to send in the first place
+        if (et.getText().toString().trim().equals("")) {
+            Toast.makeText(MessagesActivity.this, "Input some text!", Toast.LENGTH_SHORT).show();
+        } else {
+
+            // Gets message time
+            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a", Locale.getDefault());
+            textTime = sdf.format(new Date());
+
+            // puts the message into firebase with message, sender email, and time
+            String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+            FirebaseDatabase.getInstance().getReference().push().setValue(new Message(et.getText().toString(), userEmail, textTime));
+
+            // sets the edit text back to null
+            et.setText("");
+        }
+
     }
 
     /*
@@ -247,4 +251,11 @@ public class MessagesActivity extends AppCompatActivity {
     Context getContext(){
         return this;
     }
+
+    public boolean fromCurrentUser()
+    {
+        return true;
+    }
+
+
 }

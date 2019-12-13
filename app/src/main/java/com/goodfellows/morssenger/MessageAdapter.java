@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
 import java.util.List;
 
 public class MessageAdapter extends ArrayAdapter<MessageBubble> {
@@ -20,10 +19,6 @@ public class MessageAdapter extends ArrayAdapter<MessageBubble> {
         this.messages = messages;
     }
 
-    public List getMessageList() {
-        return messages;
-    }
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -34,10 +29,10 @@ public class MessageAdapter extends ArrayAdapter<MessageBubble> {
         MessageBubble messageBubble = getItem(position);
         int viewType = getItemViewType(position);
 
+        // Determine which message bubble to use
         if (messageBubble.myMessage()) {
             layoutResource = R.layout.my_message;
         }
-
         else {
             layoutResource = R.layout.their_message;
         }
@@ -45,7 +40,6 @@ public class MessageAdapter extends ArrayAdapter<MessageBubble> {
         if (convertView != null) {
             holder = (ViewHolder) convertView.getTag();
         }
-
         else {
             convertView = inflater.inflate(layoutResource, parent, false);
             holder = new ViewHolder(convertView);
