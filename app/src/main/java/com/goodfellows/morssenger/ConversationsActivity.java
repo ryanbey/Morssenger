@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -64,8 +65,8 @@ public class ConversationsActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Open new message activity make a toast
-
+                //make a toast
+                Toast.makeText(getApplicationContext(), "Feature not available", Toast.LENGTH_SHORT).show();
             }
         });
 

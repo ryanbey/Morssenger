@@ -30,10 +30,10 @@ public class MessageAdapter extends ArrayAdapter<MessageBubble> {
         int viewType = getItemViewType(position);
 
         // Determine which message bubble to use
-        if (messageBubble.myMessage()) {
+        if (messageBubble.myMessage() == true) {
             layoutResource = R.layout.my_message;
         }
-        else {
+        else if (messageBubble.myMessage() == false) {
             layoutResource = R.layout.their_message;
         }
 
