@@ -174,6 +174,10 @@ public class MessagesActivity extends AppCompatActivity {
 
             // sets the edit text back to null
             et.setText("");
+
+            Intent intent = getIntent();
+            finish();
+            startActivity(intent);
         }
 
     }
