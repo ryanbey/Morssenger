@@ -1,8 +1,5 @@
 package com.goodfellows.morssenger;
 
-import java.util.Calendar;
-import java.util.Date;
-
 public class    Message {
     //private member variables
     private String text;

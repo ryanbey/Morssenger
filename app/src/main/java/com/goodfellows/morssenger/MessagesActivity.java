@@ -18,7 +18,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -148,7 +147,6 @@ public class MessagesActivity extends AppCompatActivity {
             else if (choice == 4) {
             }
         });
-
     }
 
     /*
@@ -174,12 +172,7 @@ public class MessagesActivity extends AppCompatActivity {
 
             // sets the edit text back to null
             et.setText("");
-
-            Intent intent = getIntent();
-            finish();
-            startActivity(intent);
         }
-
     }
 
     /*
